@@ -4,7 +4,7 @@ import {
     Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
     Container, InputGroup, InputGroupAddon, Input
 } from 'reactstrap';
-
+import logo from "../assets/img/logo1.png"
 import {
     Messages, Notifications
 } from 'components';
@@ -236,7 +236,7 @@ class Header extends React.Component{
                         </div>
 
 
-                            <Dropdown nav isOpen={this.state.messagesddOpen} toggle={(e) => this.messagesddToggle(e)} className="navbardd">
+                            {/* <Dropdown nav isOpen={this.state.messagesddOpen} toggle={(e) => this.messagesddToggle(e)} className="navbardd">
                                 <DropdownToggle caret nav>
                                     <i className="i-envelope"></i>
                                     <span className="badge badge-pill badge-primary">3</span>
@@ -250,7 +250,7 @@ class Header extends React.Component{
                                     <span className="badge badge-pill badge-primary">7</span>
                                 </DropdownToggle>
                                 <Notifications notifications={notifications}/>
-                            </Dropdown>
+                            </Dropdown> */}
     
                             <form className="topbar-search-form">
                                 <InputGroup className={"topbar-search "+(this.state.searchOpen === true ? "open":"")}>
@@ -260,7 +260,7 @@ class Header extends React.Component{
                             </form>
 
 
-                        <NavbarBrand href="/">{this.getBrand()}</NavbarBrand>
+                        {/* <NavbarBrand href="/">{this.getBrand()}</NavbarBrand> */}
 
 
 
@@ -270,16 +270,21 @@ class Header extends React.Component{
                         <Nav navbar>
                             <Dropdown nav isOpen={this.state.userddOpen} toggle={(e) => this.userddToggle(e)} className="userdd">
                                 <DropdownToggle caret nav>
-                                   <img src={this.state.profileimg} alt="react-logo" className="avatar-image" /> <span>{this.state.profilename}</span>
+                                   <img src={logo} alt="react-logo" className="avatar-image" /> <span>Admin</span>
                                 </DropdownToggle>
                                 <DropdownMenu right>
-                                    <DropdownItem tag="a"><i className="i-wrench" href="#!"></i> Settings</DropdownItem>
-                                    <DropdownItem tag="a"><i className="i-user" href="#!"></i> Profile</DropdownItem>
-                                    <DropdownItem tag="a"><i className="i-info" href="#!"></i> Help</DropdownItem>
-                                    <DropdownItem tag="a" className="" href="#!"><i className="i-lock"></i> Logout</DropdownItem>
+                                    <DropdownItem 
+                                        tag="a" 
+                                        className="" 
+                                        href="#!"
+                                        onClick={() => alert("CLICKED LOGOUT")}
+                                        >
+                                        <i className="i-lock"/> 
+                                            Logout
+                                        </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
-                            <NavItem>
+                            {/* <NavItem>
                                 <div className="navbar-toggle chat-toggle">
                                     <button type="button" ref="chatToggle" className="navbar-toggler" onClick={() => this.openChat()}>
                                             <i className="i-bubbles"></i>
@@ -290,7 +295,7 @@ class Header extends React.Component{
                                 
 
 
-                            </NavItem>
+                            </NavItem> */}
                         </Nav>
                         <div className="screensize" onClick={() => this.toggle_grid()}></div>
                     </Collapse>
