@@ -130,7 +130,8 @@ class Widgetscountertiles extends React.Component{
 
                                 </div>
                             </div>
-                        </section></div>
+                        </section>
+                    </div>
 
 
 
@@ -242,7 +243,8 @@ class Widgetscountertiles extends React.Component{
 
                                 </div>
                             </div>
-                        </section></div>
+                        </section>
+                    </div>
 
 
 

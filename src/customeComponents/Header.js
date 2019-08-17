@@ -226,44 +226,25 @@ class Header extends React.Component{
             <Navbar expand="lg"
                 className={
                     this.props.location.pathname.indexOf('full-screen-maps') !== -1 ?
-                    "navbar-absolute fixed-top":"navbar-absolute fixed-top "}>
+                    "navbar-absolute fixed-top":"navbar-absolute fixed-top "}
+                >
                 <Container fluid>
                     <div className="navbar-wrapper">
                         <div className="navbar-toggle">
-                            <button type="button" ref="sidebarToggle" className="navbar-toggler" onClick={() => this.openSidebar()}>
+                            <button 
+                                type="button" 
+                                ref="sidebarToggle" 
+                                className="navbar-toggler" 
+                                onClick={() => this.openSidebar()}>
                                 <i className="i-menu"></i>
                             </button>
                         </div>
-
-
-                            {/* <Dropdown nav isOpen={this.state.messagesddOpen} toggle={(e) => this.messagesddToggle(e)} className="navbardd">
-                                <DropdownToggle caret nav>
-                                    <i className="i-envelope"></i>
-                                    <span className="badge badge-pill badge-primary">3</span>
-                                </DropdownToggle>
-                                <Messages messages={messages}/>
-                            </Dropdown>
-
-                            <Dropdown nav isOpen={this.state.notificationsddOpen} toggle={(e) => this.notificationsddToggle(e)} className="navbardd">
-                                <DropdownToggle caret nav>
-                                    <i className="i-bell"></i>
-                                    <span className="badge badge-pill badge-primary">7</span>
-                                </DropdownToggle>
-                                <Notifications notifications={notifications}/>
-                            </Dropdown> */}
-    
                             <form className="topbar-search-form">
                                 <InputGroup className={"topbar-search "+(this.state.searchOpen === true ? "open":"")}>
                                     <InputGroupAddon addonType="append" onClick={() => this.searchToggle()}><i className="i-magnifier"></i></InputGroupAddon>
                                     <Input placeholder="Search..." />
                                 </InputGroup>
                             </form>
-
-
-                        {/* <NavbarBrand href="/">{this.getBrand()}</NavbarBrand> */}
-
-
-
                     </div>
                     
                     <Collapse isOpen={this.state.isOpen} navbar className="navbar-right">
@@ -284,18 +265,6 @@ class Header extends React.Component{
                                         </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
-                            {/* <NavItem>
-                                <div className="navbar-toggle chat-toggle">
-                                    <button type="button" ref="chatToggle" className="navbar-toggler" onClick={() => this.openChat()}>
-                                            <i className="i-bubbles"></i>
-                                            <span className="badge badge-pill badge-primary">9</span>
-                                    </button>
-                                </div>
-
-                                
-
-
-                            </NavItem> */}
                         </Nav>
                         <div className="screensize" onClick={() => this.toggle_grid()}></div>
                     </Collapse>

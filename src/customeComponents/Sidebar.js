@@ -207,9 +207,9 @@ class Sidebar extends React.Component{
                                     alt="react-logo" 
                                     className="light-logo"
                                     style={{
-                                        width:"200px", 
-                                        height:"200px",
-                                        marginRight:"25px",
+                                        width:"120px", 
+                                        height:"120px",
+                                        marginRight:"55px",
                                         backgroundColor:"#37474f"
                                     }} 
                                 />

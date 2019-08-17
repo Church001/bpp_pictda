@@ -1,6 +1,5 @@
 import moment from 'moment'; // Example for onSort prop
 import React from 'react'; // Import React
-//import { render } from 'react-dom'; // Import render method
 import Datatable from 'react-bs-datatable'; // Import this package
 import {
     Row, Col,
@@ -100,7 +99,10 @@ class UIBSDatatable extends React.Component{
 
                     <div className="page-title">
                         <div className="float-left">
-                            <h1 className="title">Datatables</h1>
+                            <h1 className="title">Data</h1>
+                        </div>
+                        <div className="float-right">
+                            <h1 className="title">Data</h1>
                         </div>
                     </div>
 
@@ -118,16 +120,16 @@ class UIBSDatatable extends React.Component{
                                     <div className="col-lg-12 dt-disp">
                             
   <Datatable
-  tableHeader={header}
-  tableBody={body}
-  keyName="userTable"
-  tableClass="striped table-hover table-responsive"
-  rowsPerPage={10}
-  rowsPerPageOption={[5, 10, 15, 20]}
-  initialSort={{prop: "id", isAscending: true}}
-  onSort={onSortFunction}
-  labels={customLabels}
-/>
+    tableHeader={header}
+    tableBody={body}
+    keyName="userTable"
+    tableClass="striped table-hover table-responsive"
+    rowsPerPage={10}
+    rowsPerPageOption={[5, 10, 15, 20]}
+    initialSort={{prop: "id", isAscending: true}}
+    onSort={onSortFunction}
+    labels={customLabels}
+    />
 
                                
 

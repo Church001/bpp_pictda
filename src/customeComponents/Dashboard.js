@@ -17,6 +17,7 @@ import {
     Table,
     Row, Col,
 } from 'reactstrap';
+import CountTo from 'react-count-to';
 
 import {
     
@@ -102,113 +103,122 @@ class Dashboard extends React.Component{
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
-                            <div className="page-title">
-                                <div className="float-left">
-                                    <h1 className="title">Admin Dashboard</h1>
+                        <div className="col-12"
+                            style={{marginTop:"20px"}}
+                            >
+                            <section className="box ">
+                            <header className="panel_header">
+                                <h2 className="title float-left">Analytics</h2>
+                                
+                            </header>
+                            <div className="content-body">    <div className="row">
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-info">
+                                            <div className="wid-content">
+                                                <i className='i-user icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={1001} to={3504}/></h2>
+                                                <div className="clearfix"></div>
+                                                <span>Users</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-success">
+                                            <div className="wid-content">
+                                                <i className='i-heart icon-lg'></i>
+                                                <h2>
+                                                    <CountTo speed={4000} from={1001} to={4504}/>
+                                                </h2>
+                                                <div className="clearfix"></div>
+                                                <span>Products</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-danger">
+                                            <div className="wid-content">
+                                                <i className='i-user icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={1001} to={3304}/></h2>
+                                                <div className="clearfix"></div>
+                                                <span>Furnitures</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-purple">
+                                            <div className="wid-content">
+                                                <i className='i-share icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={1001} to={7504}/></h2>
+                                                <div className="clearfix"></div>
+                                                <span>Electronics</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-secondary">
+                                            <div className="wid-content">
+                                                <i className='i-rocket icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={11} to={87}/></h2>
+                                                <h2><span>MB</span></h2>
+                                                <div className="clearfix"></div>
+                                                <span>Stationaries</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-secondary">
+                                            <div className="wid-content">
+                                                <i className='i-note icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={100} to={1624}/></h2>
+                                                <div className="clearfix"></div>
+                                                <span>Building Materials</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-secondary">
+                                            <div className="wid-content">
+                                                <i className='i-note icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={0} to={224}/></h2>
+                                                <div className="clearfix"></div>
+                                                <span>People disliked it</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div className="tile-counter bg-secondary">
+                                            <div className="wid-content">
+                                                <i className='i-note icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={1001} to={9824}/></h2>
+                                                <div className="clearfix"></div>
+                                                <span>Pages Bookmarked!</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
                             </div>
-                            <div className="row margin-0">
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox">
-                                    <div className="widdata">
-                                        <i className='widicon i-user icon-lg icon-primary'></i>
-                                        <h3 className="widtitle">Users</h3>
-                                        <h3 className="widtag">32</h3>
-                                    </div> 
-                                    </div>
-                                </div>
+                            </section>
+                        </div>
 
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox bg-primary colored">
-                                    <div className="widdata">
-                                        <i className='widicon i-basket icon-lg icon-white'></i>
-                                        <h3 className="widtitle">Products</h3>
-                                        <h3 className="widtag">12</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox">
-                                    <div className="widdata">
-                                        <i className='widicon i-badge icon-lg icon-primary'></i>
-                                        <h3 className="widtitle">Awards</h3>
-                                        <h3 className="widtag">34</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox bg-primary colored">
-                                    <div className="widdata">
-                                        <i className='widicon i-wallet icon-lg icon-white'></i>
-                                        <h3 className="widtitle">Earnings</h3>
-                                        <h3 className="widtag">21</h3>
-                                    </div> 
-                                    </div>
-                                </div>
 
-                                <div className="col-xl-2 d-xl-block d-lg-none d-md-none d-sm-block col-sm-4 col-6">
-                                    <div className="db_box iconbox">
-                                    <div className="widdata">
-                                        <i className='widicon i-pencil icon-lg icon-primary'></i>
-                                        <h3 className="widtitle">Posts</h3>
-                                        <h3 className="widtag">30</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12} md={12}>
-                            <div className="row margin-0">
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox">
-                                    <div className="widdata">
-                                        <i className='widicon i-user icon-lg icon-primary'></i>
-                                        <h3 className="widtitle">Users</h3>
-                                        <h3 className="widtag">32</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox bg-primary colored">
-                                    <div className="widdata">
-                                        <i className='widicon i-basket icon-lg icon-white'></i>
-                                        <h3 className="widtitle">Products</h3>
-                                        <h3 className="widtag">12</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox">
-                                    <div className="widdata">
-                                        <i className='widicon i-badge icon-lg icon-primary'></i>
-                                        <h3 className="widtitle">Awards</h3>
-                                        <h3 className="widtag">34</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-                                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div className="db_box iconbox bg-primary colored">
-                                    <div className="widdata">
-                                        <i className='widicon i-wallet icon-lg icon-white'></i>
-                                        <h3 className="widtitle">Earnings</h3>
-                                        <h3 className="widtag">21</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-
-                                <div className="col-xl-2 d-xl-block d-lg-none d-md-none d-sm-block col-sm-4 col-6">
-                                    <div className="db_box iconbox">
-                                    <div className="widdata">
-                                        <i className='widicon i-pencil icon-lg icon-primary'></i>
-                                        <h3 className="widtitle">Posts</h3>
-                                        <h3 className="widtag">30</h3>
-                                    </div> 
-                                    </div>
-                                </div>
-                            </div>
                         </Col>
                     </Row>
                 </div>
