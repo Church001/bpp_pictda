@@ -6,26 +6,42 @@ import {
 import {
     
 } from 'components';
+import logo from "../assets/img/logo1.png"
 
-class Login extends React.Component{
- 
-    
+class Login extends React.Component{ 
     render(){
 
         return (
             <div>
-                <div className="">
+                <div className=""
+                    style={{backgroundColor:"#ffffff"}}
+                >
                     <Row>
                         <Col xs={12} md={12}>
 
-                            <div className="container-fluid">
+                            <div 
+                                className="container-fluid"
+                                
+                                >
                                 <div className="login-wrapper row"
-                                    style={{backgroundColor:"#0f110f"}}
+                                    style={{
+                                        // backgroundColor:"#0f110f"
+                                        backgroundColor:"#ffffff"
+                                    }}
                                     >
                                     <div id="login" className="login loginpage offset-xl-4 offset-lg-3 offset-md-3 offset-0 col-12 col-md-6 col-xl-4">
-                                        <h1><a href="#!" title="Login Page" tabIndex="-1">&nbsp;</a></h1>
-                                        <h2>BPP| Admin</h2>
-                                        <form name="loginform" id="loginform" action="#!" method="post">
+                                        {/* <h1><a href="#!" title="Login Page" tabIndex="-1">&nbsp;</a></h1> */}
+                                        {/* <h2>BPP| Admin</h2> */}
+                                        <img 
+                                            src={logo} 
+                                            style={{
+                                                    marginTop:"40px",
+                                                    width:"180px", 
+                                                    height:"180px",
+                                                    marginLeft:"25%"
+                                                }}
+                                            />
+                                        <form name="loginform" id="loginform">
                                             <p>
                                                 <label htmlFor="user_login">
                                                     <input 
@@ -34,6 +50,10 @@ class Login extends React.Component{
                                                         id="user_name" 
                                                         className="form-control"
                                                         placeholder="username"
+                                                        style={{
+                                                            backgroundColor:"#efe7e7",
+                                                            borderRadius:"10px"
+                                                        }}
                                                     />
                                                 </label>
                                             </p>
@@ -46,6 +66,10 @@ class Login extends React.Component{
                                                         className="input" 
                                                         size="20" 
                                                         placeholder="password"
+                                                        style={{
+                                                            backgroundColor:"#efe7e7",
+                                                            borderRadius:"10px"
+                                                        }}
                                                     />
                                                 </label>
                                             </p>
@@ -62,10 +86,6 @@ class Login extends React.Component{
                                                  Submit
                                                 </button>
                                             </p>
-
-                                        <p id="nav">
-                                            <a href="#!" title="Password Lost and Found">Forgot password?</a> | <a href="#!" title="Sign Up">Sign Up</a>
-                                        </p>
                                     </div>
                                 </div>
                             </div>
