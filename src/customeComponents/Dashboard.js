@@ -1,101 +1,75 @@
-// import React, { Component } from 'react'
-
-// class Dashboard extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <p>Dashboard</p>
-//             </div>
-//         )
-//     }
-// }
-
-// export default Dashboard
-
 import React from 'react';
 import {
-    Table,
     Row, Col,
 } from 'reactstrap';
 import CountTo from 'react-count-to';
-
-import {
-    
-} from 'components';
-
-import { Line, Bar } from 'react-chartjs-2';
-
-import {
-    dashboardAllProductsChart,
-    dashboardAllProductsChart1,
-    dashboardAllProductsChart2,
-    dashboardAllProductsChart6,
-    dashboardAllProductsChart3,
-} from 'variables/general/dashboard-charts-9.jsx';
-
-//import styles from 'jvectormap/jquery-jvectormap.css'
-import { VectorMap } from 'react-jvectormap';
-
-import {
-    playlistCharts7,
-    playlistCharts8,
-    playlistCharts9,
-    playlistCharts10,
-} from 'variables/general/dashboard-charts-9.jsx';
-
-var IMGDIR = process.env.REACT_APP_IMGDIR;
+import gql from 'graphql-tag';
+import {client} from ".."
 
 class Dashboard extends React.Component{
    
-        constructor(props) {
-          super(props);
-          this.state = {
-            data1: [
-                        {
-                            latLng: [41.90, 12.45],
-                            name: 'Vatican City'
-                        }, {
-                            latLng: [43.73, 7.41],
-                            name: 'Monaco'
-                        }, {
-                            latLng: [-0.52, 166.93],
-                            name: 'Nauru'
-                        }, {
-                            latLng: [-8.51, 179.21],
-                            name: 'Tuvalu'
-                        }, {
-                            latLng: [43.93, 12.46],
-                            name: 'San Marino'
-                        }, {
-                            latLng: [47.14, 9.52],
-                            name: 'Liechtenstein'
-                        }, {
-                            latLng: [7.11, 171.06],
-                            name: 'Marshall Islands'
-                        }, {
-                            latLng: [17.3, -62.73],
-                            name: 'Saint Kitts and Nevis'
-                        }, {
-                            latLng: [3.2, 73.22],
-                            name: 'Maldives'
-                        }, {
-                            latLng: [17.11, -61.85],
-                            name: 'Antigua and Barbuda'
-                        }, {
-                            latLng: [-4.61, 55.45],
-                            name: 'Seychelles'
-                        }, {
-                            latLng: [7.35, 134.46],
-                            name: 'Palau'
-                        }, {
-                            latLng: [42.5, 1.51],
-                            name: 'Andorra'
-                        }
-              ]
-            };
-          }
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading:false,
+            products:[],
+            users:[],
+            furniture:[],
+            stationaries:[],
+            building:[],
+            electronics:[]
+        };
+    }
 
-    
+    filterBuilding = (data) => {
+        let result = []
+        
+        data.map( one => {
+                
+        })
+        
+        return result
+    }
+
+    filterElectronics = (data) => {
+
+    }
+
+    filterStationaries = (data) => {
+
+    }
+
+    filterFurniture = (data) => {
+
+    }
+
+    componentDidMount(){
+        client.query({
+            query: gql `
+            {
+                products {
+                    name,
+                    id
+                },
+
+                users{
+                    id,
+                    surname
+                }
+            }
+            `
+        })
+        .then( result => {
+            console.log("RESULT DASHBOARD", result)
+            // this.setState({
+            //     loading: false
+            // })
+        })
+        .catch( error => {
+            console.log("ERROR DASHBOARD", error)
+        })
+    }
+
     render(){
 
         return (

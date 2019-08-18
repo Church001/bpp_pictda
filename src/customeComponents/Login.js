@@ -9,6 +9,23 @@ import {
 import logo from "../assets/img/logo1.png"
 
 class Login extends React.Component{ 
+
+    constructor(props){
+        super(props)
+        this.state = {
+            
+        }
+    }
+    componentDidMount(){
+
+    }
+
+    onChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render(){
 
         return (

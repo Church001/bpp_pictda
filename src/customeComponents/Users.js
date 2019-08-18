@@ -90,46 +90,44 @@ class Users extends React.Component{
    
     
     render(){
-
         return (
             <div>
                 <div className="content">
                     <Row>
-                        <Col xs={12} md={12}>
-
-                    <div className="page-title">
-                        <div className="float-left">
-                            <h1 className="title">Data</h1>
+                    <Col xs={12} md={12}>
+                        <div className="page-title">
+                            <div className="float-left">
+                                <h1 className="title">Data</h1>
+                            </div>
+                            <div className="float-right">
+                                <h1 className="title">Data</h1>
+                            </div>
                         </div>
-                        <div className="float-right">
-                            <h1 className="title">Data</h1>
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <section className="box ">
-                            <header className="panel_header">
-                                <h2 className="title float-left">Data Tables</h2>
-                                
-                            </header>
-                            <div className="content-body">
-                                <div className="row">
-                                    <div className="col-lg-12 dt-disp">
-                                    <Datatable
-                                        tableHeader={header}
-                                        tableBody={body}
-                                        keyName="userTable"
-                                        tableClass="striped table-hover table-responsive"
-                                        rowsPerPage={10}
-                                        rowsPerPageOption={[5, 10, 15, 20]}
-                                        initialSort={{prop: "id", isAscending: true}}
-                                        onSort={onSortFunction}
-                                        labels={customLabels}
-                                        />
+                        <div className="col-12">
+                            <section className="box ">
+                                <header className="panel_header">
+                                    <h2 className="title float-left">Data Tables</h2>
+                                    
+                                </header>
+                                <div className="content-body">
+                                    <div className="row">
+                                        <div className="col-lg-12 dt-disp">
+                                        <Datatable
+                                            tableHeader={header}
+                                            tableBody={body}
+                                            keyName="userTable"
+                                            tableClass="striped table-hover table-responsive"
+                                            rowsPerPage={5}
+                                            rowsPerPageOption={[5, 10, 15, 20]}
+                                            initialSort={{prop: "id", isAscending: true}}
+                                            onSort={onSortFunction}
+                                            labels={customLabels}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                    </div>
+                            </section>
+                        </div>
                     </Col>
                     </Row>
                 </div>
