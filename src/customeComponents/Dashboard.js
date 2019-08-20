@@ -138,7 +138,7 @@ class Dashboard extends React.Component{
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div className="tile-counter bg-secondary">
+                                        <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-rocket icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={11} to={87}/></h2>
@@ -151,31 +151,31 @@ class Dashboard extends React.Component{
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div className="tile-counter bg-secondary">
+                                        {/* <div className="tile-counter bg-danger">
                                             <div className="wid-content">
                                                 <i className='i-note icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={100} to={1624}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Building Materials</span>
                                             </div>
-                                        </div>
+                                        </div> */}
 
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div className="tile-counter bg-secondary">
+                                        {/* <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-note icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={0} to={224}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>People disliked it</span>
                                             </div>
-                                        </div>
+                                        </div> */}
 
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                        <div className="tile-counter bg-secondary">
+                                        <div className="tile-counter bg-success">
                                             <div className="wid-content">
                                                 <i className='i-note icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={1001} to={9824}/></h2>

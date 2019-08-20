@@ -2,7 +2,7 @@ import moment from 'moment'; // Example for onSort prop
 import React from 'react'; // Import React
 import Datatable from 'react-bs-datatable'; // Import this package
 import {
-    Row, Col,
+    Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
 } from 'reactstrap';
 
 const header = [
@@ -87,11 +87,26 @@ const customLabels = {
 
 class Products extends React.Component{
    
-    
+    constructor(props){
+        super(props)
+        this.state = {
+            showModal : false,
+            closeAll: false
+        }
+    }
+
+    toggleModal = () => {
+        this.setState({
+            showModal: !this.state.showModal,
+            closeAll: false
+        })
+    }
+
     render(){
 
         return (
             <div>
+
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
@@ -101,10 +116,6 @@ class Products extends React.Component{
                             <h1 className="title">Data</h1>
                         </div>
                     </div>
-
-
-                          
-
                     <div className="col-12">
                         <section className="box ">
                             <header className="panel_header">
@@ -132,10 +143,7 @@ class Products extends React.Component{
                             </div>
                         </section>
                     </div>
-
-
                         </Col>
-
                     </Row>
                 </div>
             </div>

@@ -2,29 +2,55 @@ import React from 'react';
 import {
     Row, Col,
 } from 'reactstrap';
-
+import gql from 'graphql-tag';
 import {
     
 } from 'components';
 import logo from "../assets/img/logo1.png"
+import {client} from ".." 
 
 class Login extends React.Component{ 
 
     constructor(props){
         super(props)
         this.state = {
-            
+            email:"",
+            password:""
         }
     }
     componentDidMount(){
 
     }
 
-    onChange = e => {
+    onchange = e => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+
+    submit = (username, password) => {
+        console.log(`email is ${username} and password is ${password}`)
+
+        client.mutate(({
+            variables: {
+                username: this.state.email,
+                password: this.state.password
+            },
+           mutation: gql `
+                mutation SignIn($username: String!, $password: String!){
+                    signIn(username:$username, password:$password){
+                        token
+                    }
+                }
+           ` 
+        }))
+        .then( response => {
+            console.log("response",response)
+        })
+        .catch( error => {
+            console.log(`ERROR ${error}`)
+        })
+    }   
 
     render(){
 
@@ -63,10 +89,11 @@ class Login extends React.Component{
                                                 <label htmlFor="user_login">
                                                     <input 
                                                         type="text" 
-                                                        name="un" 
+                                                        name="email" 
                                                         id="user_name" 
                                                         className="form-control"
                                                         placeholder="username"
+                                                        onChange={e => this.onchange(e)}
                                                         style={{
                                                             backgroundColor:"#efe7e7",
                                                             borderRadius:"10px"
@@ -78,9 +105,10 @@ class Login extends React.Component{
                                                 <label htmlFor="user_pass">
                                                     <input 
                                                         type="password" 
-                                                        name="pwd" 
+                                                        name="password" 
                                                         id="user_pass" 
-                                                        className="input" 
+                                                        className="input"
+                                                        onChange={e => this.onchange(e)} 
                                                         size="20" 
                                                         placeholder="password"
                                                         style={{
@@ -99,6 +127,7 @@ class Login extends React.Component{
                                                     className="btn btn-accent btn-block" 
                                                     value="Sign In" 
                                                     style={{backgroundColor:"green"}}
+                                                    onClick={() => this.submit(this.state.email, this.state.password)}
                                                 >
                                                  Submit
                                                 </button>

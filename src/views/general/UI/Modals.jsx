@@ -145,7 +145,6 @@ class UIModals extends React.Component{
         </Modal>
       </div>
 <br/> 
-
 <h5>Modal backdrop</h5>
 
 <div>
