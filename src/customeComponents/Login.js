@@ -8,6 +8,8 @@ import {
 } from 'components';
 import logo from "../assets/img/logo1.png"
 import {client} from ".." 
+import { withRouter } from 'react-router';
+
 
 class Login extends React.Component{ 
 
@@ -46,6 +48,7 @@ class Login extends React.Component{
         }))
         .then( response => {
             console.log("response",response)
+            this.props.history.push("/")
         })
         .catch( error => {
             console.log(`ERROR ${error}`)
@@ -53,7 +56,7 @@ class Login extends React.Component{
     }   
 
     render(){
-
+        console.log("PROPERTIES", this.props)
         return (
             <div>
                 <div className=""
@@ -143,4 +146,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -5,14 +5,15 @@ import {
     Container, InputGroup, InputGroupAddon, Input
 } from 'reactstrap';
 import logo from "../assets/img/logo1.png"
-import {
-    Messages, Notifications
-} from 'components';
+// import {
+//     Messages, Notifications
+// } from 'components';
 
 import dashboardRoutes from 'routes/general.jsx';
+import { withRouter } from 'react-router';
 
-import { messages } from 'variables/topbar.jsx';
-import { notifications } from 'variables/topbar.jsx';
+// import { messages } from 'variables/topbar.jsx';
+// import { notifications } from 'variables/topbar.jsx';
 
 var IMGDIR = process.env.REACT_APP_IMGDIR;
 class Header extends React.Component{
@@ -53,6 +54,10 @@ class Header extends React.Component{
         this.setState({
             userddOpen: !this.state.userddOpen
         });
+    }
+
+    logout = () => {
+        this.props.history.push("/login")
     }
     searchToggle(){
         //this.refs.searchbarToggle.classList.toggle('toggled');
@@ -258,7 +263,7 @@ class Header extends React.Component{
                                         tag="a" 
                                         className="" 
                                         href="#!"
-                                        onClick={() => alert("CLICKED LOGOUT")}
+                                        onClick={() => this.logout()}
                                         >
                                         <i className="i-lock"/> 
                                             Logout
@@ -274,4 +279,4 @@ class Header extends React.Component{
     }
 }
 
-export default Header;
+export default withRouter(Header);
