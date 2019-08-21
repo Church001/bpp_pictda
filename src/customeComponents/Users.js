@@ -4,7 +4,13 @@ import Datatable from 'react-bs-datatable'; // Import this package
 import {
     Row, Col,
 } from 'reactstrap';
+import gql from 'graphql-tag';
+import {client} from ".."
 
+import {
+    Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
+     UncontrolledDropdown
+} from 'reactstrap';
 const header = [
   { title: 'ID', prop: 'id', sortable: true, filterable: true },
   { title: 'Name', prop: 'name', sortable: true, filterable: true },
@@ -87,9 +93,41 @@ const customLabels = {
 };
 
 class Users extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state = {
+            showModal : false,
+            closeAll: false,
+            users: [],
+            currentData: "All"
+        }
+    }
+
    
-    
+    componentDidMount(){
+        client.query({
+            query: gql `
+            {
+                users{
+                    id,
+                    surname
+                }
+            }
+            `
+        })
+        .then( result => {
+            console.log("RESULT DASHBOARD", result)
+            this.setState({
+                users: result.data.users
+            })
+        })
+        .catch( error => {
+            console.log("ERROR DASHBOARD", error)
+        })
+    }
     render(){
+        console.log("USERS",this.state.users)
         return (
             <div>
                 <div className="content">
@@ -97,22 +135,37 @@ class Users extends React.Component{
                     <Col xs={12} md={12}>
                         <div className="page-title">
                             <div className="float-left">
-                                <h1 className="title">Data</h1>
+                                <h3 className="title">{this.state.currentData}</h3>
                             </div>
                             <div className="float-right">
-                                <h1 className="title">Data</h1>
+                                <h1 className="title"></h1>
+                                <Dropdown 
+                                    direction="down" 
+                                    isOpen={this.state.btnDropleft} 
+                                    toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}
+                                >
+                                    <DropdownToggle caret>
+                                        Filter By Category
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>All</DropdownItem>
+                                        <DropdownItem>Furnitures</DropdownItem>
+                                        <DropdownItem>Electronics</DropdownItem>
+                                        <DropdownItem>Building Materials</DropdownItem>
+                                        <DropdownItem>Stationaries</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
                             </div>
                         </div>
                         <div className="col-12">
                             <section className="box ">
                                 <header className="panel_header">
                                     <h2 className="title float-left">Data Tables</h2>
-                                    
                                 </header>
                                 <div className="content-body">
                                     <div className="row">
                                         <div className="col-lg-12 dt-disp">
-                                        <Datatable
+                                        {/* <Datatable
                                             tableHeader={header}
                                             tableBody={body}
                                             keyName="userTable"
@@ -122,7 +175,7 @@ class Users extends React.Component{
                                             initialSort={{prop: "id", isAscending: true}}
                                             onSort={onSortFunction}
                                             labels={customLabels}
-                                            />
+                                            /> */}
                                         </div>
                                     </div>
                                 </div>

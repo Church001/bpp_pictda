@@ -14,6 +14,9 @@ import Users from './Users';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import customRoute from './routes';
+import ProtectedRoute from './ProtectedRoute';
+import gql from 'graphql-tag';
+import {client} from ".."
 
 //var ps;
 
@@ -25,6 +28,8 @@ class GeneralLayout extends React.Component{
             topbarColor: topbarStyle,
             menuType: menuType,
             topbarType: topbarType,
+            allProducts: [],
+            allUsers: []
         };
         this.menuSettings = this.menuSettings.bind(this);
         this.topbarSettings = this.topbarSettings.bind(this);
@@ -43,7 +48,33 @@ class GeneralLayout extends React.Component{
         });
     }
 
-    componentDidMount(){}
+    componentDidMount(){
+        client.query({
+            query: gql `
+            {
+                products {
+                    name,
+                    id
+                },
+
+                users{
+                    id,
+                    surname
+                }
+            }
+            `
+        })
+        .then( result => {
+            console.log("GENERALLAYOUT RESULT", result.data)
+            // this.setState({
+            //     loading: false
+            // })
+        })
+        .catch( error => {
+            console.log("ERROR DASHBOARD", error)
+        })
+    }
+
     componentWillUnmount(){}
     componentDidUpdate(e) {
       if(e.history.action === "PUSH"){
@@ -51,7 +82,11 @@ class GeneralLayout extends React.Component{
         document.scrollingElement.scrollTop = 0;
       }
     }
+
     render(){
+      let  auth = {
+          isAuthenticated: true
+      }
         return (
             <div className="wrapper" ref="themeWrapper" data-menu={this.state.menuColor} data-topbar={this.state.topbarColor} data-menutype={this.state.menuType} data-topbartype={this.state.topbarType}>
 
@@ -87,17 +122,20 @@ class GeneralLayout extends React.Component{
                                 );
                             })
                         } */}
-                        <Route
+                        <ProtectedRoute
+                            auth={auth}
                             path="/"
                             exact
                             component={Dashboard}
                         />
-                        <Route
+                        <ProtectedRoute
+                            auth={auth}
                             path="/products"
                             exact
                             component={Products}
                         />
-                        <Route 
+                        <ProtectedRoute
+                            auth={auth} 
                             path="/users"
                             exact
                             component={Users}

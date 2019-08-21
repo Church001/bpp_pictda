@@ -5,10 +5,16 @@ import {
     Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
 } from 'reactstrap';
 import MaterialTable from 'material-table';
+import gql from 'graphql-tag';
+import {client} from ".."
 import { 
     AddBox, 
     ArrowUpward 
 } from "@material-ui/icons";
+import {
+    Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
+     UncontrolledDropdown
+} from 'reactstrap';
 const header = [
   { title: 'SN', prop: 'id', sortable: true, filterable: true },
   { title: 'Product', prop: 'name', sortable: true, filterable: true },
@@ -96,8 +102,30 @@ class Products extends React.Component{
         this.state = {
             showModal : false,
             closeAll: false,
-            data: []
+            products: []
         }
+    }
+
+    componentDidMount(){
+        client.query({
+            query: gql `
+            {
+                products {
+                    name,
+                    id
+                }
+            }
+            `
+        })
+        .then( result => {
+            console.log("RESULT", result.data)
+            this.setState({
+                products: result.data.products
+            })
+        })
+        .catch(error => {
+            console.log("ERROR", error)
+        })
     }
 
     toggleModal = () => {
@@ -129,18 +157,33 @@ class Products extends React.Component{
       ]
 
     render(){
-        console.log("STATE", this.state.data)
+        console.log("STATE", this.state.products)
         return (
             <div>
-
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
 
                     <div className="page-title">
-                        <div className="float-left">
-                            <h1 className="title">Data</h1>
-                        </div>
+                        <div className="float-right">
+                                <h1 className="title"></h1>
+                                <Dropdown 
+                                    direction="down" 
+                                    isOpen={this.state.btnDropleft} 
+                                    toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}
+                                >
+                                    <DropdownToggle caret>
+                                        Filter By Category
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>All</DropdownItem>
+                                        <DropdownItem>Furnitures</DropdownItem>
+                                        <DropdownItem>Electronics</DropdownItem>
+                                        <DropdownItem>Building Materials</DropdownItem>
+                                        <DropdownItem>Stationaries</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </div>
                     </div>
                     <div className="col-12">
                         <section className="box ">

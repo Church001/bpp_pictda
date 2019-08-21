@@ -91,9 +91,9 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-user icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={1001} to={3504}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={30}/></h2>
                                                 <div className="clearfix"></div>
-                                                <span>Users</span>
+                                                <span>Building Material</span>
                                             </div>
                                         </div>
 
@@ -104,10 +104,10 @@ class Dashboard extends React.Component{
                                             <div className="wid-content">
                                                 <i className='i-heart icon-lg'></i>
                                                 <h2>
-                                                    <CountTo speed={4000} from={1001} to={4504}/>
+                                                    <CountTo speed={4000} from={0} to={32}/>
                                                 </h2>
                                                 <div className="clearfix"></div>
-                                                <span>Products</span>
+                                                <span>Stationaries</span>
                                             </div>
                                         </div>
 
@@ -117,7 +117,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-danger">
                                             <div className="wid-content">
                                                 <i className='i-user icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={1001} to={3304}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={23}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Furnitures</span>
                                             </div>
@@ -129,7 +129,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-purple">
                                             <div className="wid-content">
                                                 <i className='i-share icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={1001} to={7504}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={72}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Electronics</span>
                                             </div>
@@ -140,11 +140,11 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
-                                                <i className='i-rocket icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={11} to={87}/></h2>
-                                                <h2><span>MB</span></h2>
+                                                <i className='i-user icon-lg'></i>
+                                                <h2><CountTo speed={3000} from={0} to={3}/></h2>
+                                                {/* <h2><span></span></h2> */}
                                                 <div className="clearfix"></div>
-                                                <span>Stationaries</span>
+                                                <span>Users</span>
                                             </div>
                                         </div>
 
@@ -178,9 +178,9 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-success">
                                             <div className="wid-content">
                                                 <i className='i-note icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={1001} to={9824}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={10}/></h2>
                                                 <div className="clearfix"></div>
-                                                <span>Pages Bookmarked!</span>
+                                                <span>Products</span>
                                             </div>
                                         </div>
 

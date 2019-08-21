@@ -47,7 +47,6 @@ class Login extends React.Component{
            ` 
         }))
         .then( response => {
-            console.log("response",response.data.signIn)
             this.props.history.push("/")
         })
         .catch( error => {
@@ -142,4 +141,5 @@ class Login extends React.Component{
     }
 }
 
-export default withRouter(Login);
+export default Login;
+// export default (withRouter(Login));
