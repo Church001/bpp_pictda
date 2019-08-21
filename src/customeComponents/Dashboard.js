@@ -11,7 +11,7 @@ class Dashboard extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            loading:false,
+            loading:true,
             products:[],
             users:[],
             furniture:[],
@@ -23,24 +23,42 @@ class Dashboard extends React.Component{
 
     filterBuilding = (data) => {
         let result = []
-        
         data.map( one => {
-                
+               if(one.category === "building"){
+                   result.push(one)
+               }
         })
-        
         return result
     }
 
     filterElectronics = (data) => {
-
+        let result = []
+        data.map( one => {
+            if(one.category === "electronics"){
+                result.push(one)
+            }
+         })
+        return result
     }
 
     filterStationaries = (data) => {
-
+        let result = []
+        data.map( one => {
+            if(one.category === "stationaries"){
+                result.push(one)
+            }
+         })
+        return result
     }
 
     filterFurniture = (data) => {
-
+        let result = []
+        data.map( one => {
+            if(one.category === "furnitures"){
+                result.push(one)
+            }
+         })
+        return result
     }
 
     componentDidMount(){
@@ -49,7 +67,12 @@ class Dashboard extends React.Component{
             {
                 products {
                     name,
-                    id
+                    id,
+                    manufacturer,
+                    price_per_unit,
+                    category,
+                    company_name,
+                    description
                 },
 
                 users{
@@ -60,20 +83,28 @@ class Dashboard extends React.Component{
             `
         })
         .then( result => {
-            console.log("RESULT DASHBOARD", result)
-            // this.setState({
-            //     loading: false
-            // })
+            console.log("RESULT DASHBOARD", result.data.products)
+            this.setState({
+                products: result.data.products,
+                users: result.data.users,
+                loading: false
+
+            })
         })
         .catch( error => {
             console.log("ERROR DASHBOARD", error)
         })
+
+        // console.log(filterBuilding)
     }
 
     render(){
 
         return (
             <div>
+            { 
+            !this.state.loading 
+                ?
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
@@ -91,7 +122,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-user icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={0} to={30}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={this.filterBuilding(this.state.products).length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Building Material</span>
                                             </div>
@@ -104,7 +135,7 @@ class Dashboard extends React.Component{
                                             <div className="wid-content">
                                                 <i className='i-heart icon-lg'></i>
                                                 <h2>
-                                                    <CountTo speed={4000} from={0} to={32}/>
+                                                    <CountTo speed={4000} from={0} to={this.filterStationaries(this.state.products).length}/>
                                                 </h2>
                                                 <div className="clearfix"></div>
                                                 <span>Stationaries</span>
@@ -117,7 +148,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-danger">
                                             <div className="wid-content">
                                                 <i className='i-user icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={0} to={23}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={this.filterFurniture(this.state.products).length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Furnitures</span>
                                             </div>
@@ -129,7 +160,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-purple">
                                             <div className="wid-content">
                                                 <i className='i-share icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={0} to={72}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={this.filterElectronics(this.state.products).length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Electronics</span>
                                             </div>
@@ -141,7 +172,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-user icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={0} to={3}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={this.state.users.length}/></h2>
                                                 {/* <h2><span></span></h2> */}
                                                 <div className="clearfix"></div>
                                                 <span>Users</span>
@@ -178,7 +209,7 @@ class Dashboard extends React.Component{
                                         <div className="tile-counter bg-success">
                                             <div className="wid-content">
                                                 <i className='i-note icon-lg'></i>
-                                                <h2><CountTo speed={3000} from={0} to={10}/></h2>
+                                                <h2><CountTo speed={3000} from={0} to={this.state.products.length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Products</span>
                                             </div>
@@ -196,6 +227,13 @@ class Dashboard extends React.Component{
                         </Col>
                     </Row>
                 </div>
+                :
+                <div className="content">
+                    <h1>
+                        Loading...
+                    </h1>
+                </div>
+            }
             </div>
         );
     }
