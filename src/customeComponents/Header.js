@@ -10,7 +10,7 @@ import logo from "../assets/img/logo1.png"
 // } from 'components';
 
 import dashboardRoutes from 'routes/general.jsx';
-import { withRouter } from 'react-router';
+// import { withRouter } from 'react-router';
 
 // import { messages } from 'variables/topbar.jsx';
 // import { notifications } from 'variables/topbar.jsx';
@@ -57,7 +57,7 @@ class Header extends React.Component{
     }
 
     logout = () => {
-        this.props.history.push("/login")
+        // this.props.history.push("/login")
     }
     searchToggle(){
         //this.refs.searchbarToggle.classList.toggle('toggled');
@@ -279,4 +279,5 @@ class Header extends React.Component{
     }
 }
 
-export default withRouter(Header);
+export default Header;
+// export default withRouter(Header);

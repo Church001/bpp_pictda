@@ -112,7 +112,7 @@ class UIDatagrid extends React.Component{
           columns={columns}
           rowGetter={i => this.state.rows[i]}
           rowsCount={50}
-          onGridRowsUpdated={this.onGridRowsUpdated}
+        //   onGridRowsUpdated={this.onGridRowsUpdated}
           enableCellSelect={true}
         />
 

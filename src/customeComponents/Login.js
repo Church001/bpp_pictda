@@ -47,7 +47,7 @@ class Login extends React.Component{
            ` 
         }))
         .then( response => {
-            console.log("response",response)
+            console.log("response",response.data.signIn)
             this.props.history.push("/")
         })
         .catch( error => {
@@ -56,7 +56,6 @@ class Login extends React.Component{
     }   
 
     render(){
-        console.log("PROPERTIES", this.props)
         return (
             <div>
                 <div className=""
@@ -71,13 +70,10 @@ class Login extends React.Component{
                                 >
                                 <div className="login-wrapper row"
                                     style={{
-                                        // backgroundColor:"#0f110f"
                                         backgroundColor:"#ffffff"
                                     }}
                                     >
                                     <div id="login" className="login loginpage offset-xl-4 offset-lg-3 offset-md-3 offset-0 col-12 col-md-6 col-xl-4">
-                                        {/* <h1><a href="#!" title="Login Page" tabIndex="-1">&nbsp;</a></h1> */}
-                                        {/* <h2>BPP| Admin</h2> */}
                                         <img 
                                             src={logo} 
                                             style={{

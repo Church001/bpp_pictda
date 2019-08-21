@@ -12,10 +12,11 @@ import 'assets/scss/zest-admin.css';
 import 'assets/fonts/simple-line-icons.css';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-// import indexRoutes from 'routes/index.jsx';
+import indexRoutes from 'routes/index.jsx';
 import Login from './customeComponents/Login';
 // import Dashboard from './customeComponents/Dashboard';
 import GeneralLayout from './customeComponents/GeneralLayout';
+import Error from './customeComponents/Error';
 // import ProtectedRoute from './customeComponents/ProtectedRoute';
 
 const hist = createBrowserHistory();
@@ -45,6 +46,11 @@ ReactDOM.render(
                 <Route 
                     path='/login'
                     component={Login}
+                />
+                <Route 
+                    path="/error"
+                    exact
+                    component={Error}
                 />
                 <Route 
                     path='/'

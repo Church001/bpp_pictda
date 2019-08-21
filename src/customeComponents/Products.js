@@ -4,12 +4,16 @@ import Datatable from 'react-bs-datatable'; // Import this package
 import {
     Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
 } from 'reactstrap';
-
+import MaterialTable from 'material-table';
+import { 
+    AddBox, 
+    ArrowUpward 
+} from "@material-ui/icons";
 const header = [
-  { title: 'ID', prop: 'id', sortable: true, filterable: true },
-  { title: 'Name', prop: 'name', sortable: true, filterable: true },
+  { title: 'SN', prop: 'id', sortable: true, filterable: true },
+  { title: 'Product', prop: 'name', sortable: true, filterable: true },
   { title: 'Company', prop: 'company', sortable: true, filterable: true },
-  { title: 'Email', prop: 'email', sortable: true, filterable: true },
+  { title: 'Address', prop: 'email', sortable: true, filterable: true },
   { title: 'Phone', prop: 'phone', sortable: true, filterable: true },
   { title: 'Date', prop: 'date', sortable: true, filterable: true },
 ];
@@ -91,7 +95,8 @@ class Products extends React.Component{
         super(props)
         this.state = {
             showModal : false,
-            closeAll: false
+            closeAll: false,
+            data: []
         }
     }
 
@@ -102,8 +107,29 @@ class Products extends React.Component{
         })
     }
 
-    render(){
+    columns= [
+        { title: 'Name', field: 'name' },
+        { title: 'Surname', field: 'surname' },
+        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+        {
+          title: 'Birth Place',
+          field: 'birthCity',
+          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+        },
+      ]
 
+      data = [
+        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+        {
+          name: 'Zerya Betül',
+          surname: 'Baran',
+          birthYear: 2017,
+          birthCity: 34,
+        },
+      ]
+
+    render(){
+        console.log("STATE", this.state.data)
         return (
             <div>
 
@@ -124,22 +150,39 @@ class Products extends React.Component{
                             </header>
                             <div className="content-body">
                                 <div className="row">
-                                    <div className="col-lg-12 dt-disp">                         
-                                    <Datatable
-                                        tableHeader={header}
-                                        tableBody={body}
-                                        keyName="userTable"
-                                        tableClass="striped table-hover table-responsive"
-                                        rowsPerPage={8}
-                                        rowsPerPageOption={[5, 10, 15, 20]}
-                                        initialSort={{prop: "id", isAscending: true}}
-                                        onSort={onSortFunction}
-                                        labels={customLabels}
+                                    <div className="col-lg-12 dt-disp">
+                                        <MaterialTable
+                                            title="Product Detail"
+                                            columns={this.columns}
+                                            data={this.data}
+                                            editable={{
+                                            onRowAdd: newData =>{
+                                                this.setState({
+                                                    data: newData
+                                                })
+                                            },
+                                            onRowUpdate: (newData, oldData) =>
+                                                new Promise(resolve => {
+                                                setTimeout(() => {
+                                                    resolve();
+                                                    const data = [...this.data];
+                                                    data[data.indexOf(oldData)] = newData;
+                                                //   setState({ ...state, data });
+                                                }, 600);
+                                                }),
+                                            onRowDelete: oldData =>
+                                                new Promise(resolve => {
+                                                setTimeout(() => {
+                                                    resolve();
+                                                    const data = [...this.data];
+                                                    data.splice(data.indexOf(oldData), 1);
+                                                //   setState({ ...state, data });
+                                                }, 600);
+                                                }),
+                                            }}
                                         />
                                     </div>
                                 </div>
-
-
                             </div>
                         </section>
                     </div>

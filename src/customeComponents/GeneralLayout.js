@@ -102,6 +102,10 @@ class GeneralLayout extends React.Component{
                             exact
                             component={Users}
                         />
+                        <Redirect 
+                            from="**"
+                            to="/error"
+                        />
                     </Switch> 
                     {/* <Footer fluid/> */}
                 </div>
