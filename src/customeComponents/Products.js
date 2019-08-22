@@ -35,6 +35,10 @@ class Products extends React.Component{
         }
     }
 
+    componentWillMount(){
+        console.log("COMPONENT WILL MOUNT", this.props)
+    }
+
     componentDidMount(){
         client.query({
             query: gql `
@@ -48,11 +52,15 @@ class Products extends React.Component{
                     company_name,
                     description,
                     user {
+                         id,
                         surname,
+                        othernames,
                         phonenumber,
-                        email,
+                        company_address,
                         company_name,
-                        othernames
+                        email,
+                        description,
+                        role,
                     }
                 }
             }
@@ -68,11 +76,13 @@ class Products extends React.Component{
             console.log("ERROR", error)
         })
     }
+
     enterSelection = value => {
         this.setState({
             selection: value
         })
     }
+
     filterProducts = (data, filter) => {
         let result = []
             if(filter === "all"){
@@ -238,22 +248,22 @@ class Products extends React.Component{
                                         <thead>
                                             <tr>
                                             <th>
-                                                <h4>S/N</h4>
+                                                <h5>S/N</h5>
                                             </th>
                                             <th>
-                                                <h4>Product Name</h4>
+                                                <h5>Product Name</h5>
                                             </th>
                                             <th>
-                                                <h4>Manufacturer</h4>
+                                                <h5>Manufacturer</h5>
                                             </th>
                                             <th>
-                                                <h4>Category</h4>
+                                                <h5>Category</h5>
                                             </th>
                                             <th>
-                                                <h4>Price</h4>
+                                                <h5>Price</h5>
                                             </th>
                                             <th>
-                                                <h4></h4>
+                                                <h5></h5>
                                             </th>
                                             </tr>
                                         </thead>

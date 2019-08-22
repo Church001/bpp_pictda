@@ -29,7 +29,8 @@ class GeneralLayout extends React.Component{
             menuType: menuType,
             topbarType: topbarType,
             allProducts: [],
-            allUsers: []
+            allUsers: [],
+            allData:{}
         };
         this.menuSettings = this.menuSettings.bind(this);
         this.topbarSettings = this.topbarSettings.bind(this);
@@ -54,21 +55,54 @@ class GeneralLayout extends React.Component{
             {
                 products {
                     name,
-                    id
+                    id,
+                    manufacturer,
+                    price_per_unit,
+                    category,
+                    company_name,
+                    description,
+                    user {
+                         id,
+                        surname,
+                        othernames,
+                        phonenumber,
+                        company_address,
+                        company_name,
+                        email,
+                        description,
+                        role,
+                    }
                 },
 
                 users{
                     id,
-                    surname
+                    surname,
+                    othernames,
+                    phonenumber,
+                    company_address,
+                    company_name,
+                    email,
+                    description,
+                    role,
+                    products{
+                        name,
+                        id,
+                        manufacturer,
+                        price_per_unit,
+                        category,
+                        company_name,
+                        description
+                    }
                 }
             }
             `
         })
         .then( result => {
             console.log("GENERALLAYOUT RESULT", result.data)
-            // this.setState({
-            //     loading: false
-            // })
+            this.setState({
+                // loading: false
+                allData: result.data
+            })
         })
         .catch( error => {
             console.log("ERROR DASHBOARD", error)
@@ -123,18 +157,21 @@ class GeneralLayout extends React.Component{
                             })
                         } */}
                         <ProtectedRoute
+                            rest={this.state.allData}
                             auth={auth}
                             path="/"
                             exact
                             component={Dashboard}
                         />
                         <ProtectedRoute
+                            rest={this.state.allData}
                             auth={auth}
                             path="/products"
                             exact
                             component={Products}
                         />
                         <ProtectedRoute
+                            rest={this.state.allData}
                             auth={auth} 
                             path="/users"
                             exact

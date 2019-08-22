@@ -60,6 +60,10 @@ class Dashboard extends React.Component{
          })
         return result
     }
+    
+    componentWillMount(){
+        console.log("COMPONENT WILL MOUNT", this.props.rest)
+    }
 
     componentDidMount(){
         client.query({
@@ -77,7 +81,14 @@ class Dashboard extends React.Component{
 
                 users{
                     id,
-                    surname
+                    surname,
+                    othernames,
+                    phonenumber,
+                    company_address,
+                    company_name,
+                    email,
+                    description,
+                    role,
                 }
             }
             `
