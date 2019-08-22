@@ -160,6 +160,26 @@ class Products extends React.Component{
         console.log("STATE", this.state.products)
         return (
             <div>
+                <Modal isOpen={true} toggle={this.toggle2} className={this.props.className}>
+                    <ModalHeader toggle={this.toggle2}>Modal title</ModalHeader>
+                    <ModalBody>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <br />
+                        <Button color="success" onClick={this.toggleNested}>Show Nested Modal</Button>
+                        <Modal isOpen={true} toggle={this.toggleNested} onClosed={this.state.closeAll ? this.toggle2 : undefined}>
+                        <ModalHeader>Nested Modal title</ModalHeader>
+                        <ModalBody>Stuff and things</ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={this.toggleNested}>Done</Button>{' '}
+                            <Button color="secondary" onClick={this.toggleAll}>All Done</Button>
+                        </ModalFooter>
+                        </Modal>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggle2}>Do Something</Button>{' '}
+                        <Button color="secondary" onClick={this.toggle2}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
