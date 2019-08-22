@@ -31,16 +31,23 @@ class Products extends React.Component{
             clickedProduct: {},
             supplier: {},
             supplierModal: false,
-            selection:"all"
+            selection:"all",
+            loading: false
         }
     }
 
     componentWillMount(){
-        console.log("COMPONENT WILL MOUNT", this.props)
+        console.log("COMPONENT WILL MOUNT", this.props.rest.products)
+        if(!_.isEmpty(this.props.rest.products)){
+            this.setState({
+                products:this.props.rest.products
+            })
+        }
     }
 
     componentDidMount(){
-        client.query({
+        if(_.isEmpty(this.state.products)){
+            client.query({
             query: gql `
             {
                 products {
@@ -52,7 +59,7 @@ class Products extends React.Component{
                     company_name,
                     description,
                     user {
-                         id,
+                        id,
                         surname,
                         othernames,
                         phonenumber,
@@ -75,6 +82,7 @@ class Products extends React.Component{
         .catch(error => {
             console.log("ERROR", error)
         })
+        }
     }
 
     enterSelection = value => {
@@ -137,7 +145,7 @@ class Products extends React.Component{
                     <ModalBody>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         <br />
-                        <Button 
+                        {/* <Button 
                             color="success" 
                             onClick={this.toggleSupplier}
                             style={{    
@@ -149,7 +157,7 @@ class Products extends React.Component{
                             }}
                         >
                             See Supplier
-                        </Button>
+                        </Button> */}
                             <Modal 
                                 isOpen={this.state.supplierModal} 
                                 toggle={this.toggleNested} 
@@ -158,6 +166,7 @@ class Products extends React.Component{
                                 <ModalHeader>Supplier Detail</ModalHeader>
                                 <ModalBody>Stuff and things</ModalBody>
                                 <ModalFooter>
+
                                     <Button 
                                         color="primary" 
                                         onClick={this.toggleSupplier}
@@ -175,6 +184,20 @@ class Products extends React.Component{
                             </Modal>
                     </ModalBody>
                     <ModalFooter>
+                    <Button 
+                            color="success" 
+                            onClick={this.toggleSupplier}
+                            style={{    
+                                width: "150px",
+                                height: "50px",
+                                backgroundColor: "#37474f",
+                                border: "0px",
+                                color: "#baafaf",
+                                marginRight: "200px"
+                            }}
+                        >
+                            See Supplier
+                        </Button>
                         <Button 
                             color="primary" 
                             onClick={this.toggleModal}
@@ -188,6 +211,8 @@ class Products extends React.Component{
                         >Done</Button>{' '}
                     </ModalFooter>
                 </Modal>
+                {!this.state.loading
+                ?
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
@@ -238,7 +263,7 @@ class Products extends React.Component{
                     <div className="col-12">
                         <section className="box ">
                             <header className="panel_header">
-                                <h2 className="title float-left">{this.state.selection}</h2>
+                                <h2 className="title float-left">{this.state.selection}{" "}PRODUCTS</h2>
                                 
                             </header>
                             <div className="content-body">
@@ -306,6 +331,13 @@ class Products extends React.Component{
                         </Col>
                     </Row>
                 </div>
+                :
+                <div className="content">
+                    <h1>
+                        Loading...
+                    </h1>
+                </div>
+            }
             </div>
         );
     }

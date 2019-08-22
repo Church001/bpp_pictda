@@ -5,6 +5,7 @@ import {
 import CountTo from 'react-count-to';
 import gql from 'graphql-tag';
 import {client} from ".."
+import _ from "lodash"
 
 class Dashboard extends React.Component{
    
@@ -62,55 +63,72 @@ class Dashboard extends React.Component{
     }
     
     componentWillMount(){
-        console.log("COMPONENT WILL MOUNT", this.props.rest)
+        console.log("COMPONENT WILL MOUNT DASHBOARD", this.props.rest)
+        if(!_.isEmpty(this.props.rest.products)||!_.isEmpty(this.props.rest.users)){
+            this.setState({
+                products: this.props.rest.products,
+                users:this.props.rest.users,
+                loading: false
+            })
+        }
+        else {
+
+        }
     }
 
     componentDidMount(){
-        client.query({
-            query: gql `
-            {
-                products {
-                    name,
-                    id,
-                    manufacturer,
-                    price_per_unit,
-                    category,
-                    company_name,
-                    description
-                },
+        if(_.isEmpty(this.state.products) || _.isEmpty(this.state.users)){
+            client.query({
+                query: gql `
+                {
+                    products {
+                        name,
+                        id,
+                        manufacturer,
+                        price_per_unit,
+                        category,
+                        company_name,
+                        description
+                    },
 
-                users{
-                    id,
-                    surname,
-                    othernames,
-                    phonenumber,
-                    company_address,
-                    company_name,
-                    email,
-                    description,
-                    role,
+                    users{
+                        id,
+                        surname,
+                        othernames,
+                        phonenumber,
+                        company_address,
+                        company_name,
+                        email,
+                        description,
+                        role,
+                    }
                 }
-            }
-            `
-        })
-        .then( result => {
-            console.log("RESULT DASHBOARD", result.data.products)
-            this.setState({
-                products: result.data.products,
-                users: result.data.users,
-                loading: false
-
+                `
             })
-        })
-        .catch( error => {
-            console.log("ERROR DASHBOARD", error)
-        })
+            .then( result => {
+                console.log("RESULT DASHBOARD", result.data.products)
+                this.setState({
+                    products: result.data.products,
+                    users: result.data.users,
+                    loading: false
 
-        // console.log(filterBuilding)
+                })
+            })
+            .catch( error => {
+                console.log("ERROR DASHBOARD", error)
+            })
+        }
+        else {
+            this.setState({
+                products: this.props.rest.products,
+                users:this.props.rest.users,
+                loading: false
+            })
+        }
     }
 
     render(){
-
+        console.log("STATE", this.state.products)
         return (
             <div>
             { 

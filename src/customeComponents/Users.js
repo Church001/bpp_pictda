@@ -28,7 +28,7 @@ class Users extends React.Component{
             users: [],
             clickedUser: {},
             currentData: "All",
-            supplierModal: false,
+            productModal: false,
             products:[]
         }
     }
@@ -89,6 +89,12 @@ class Users extends React.Component{
         })
     }
 
+    toggleProducts = () =>{
+        this.setState({
+            productModal: !this.state.productModal
+        })
+    }
+
     render(){
         console.log("USERS",this.state.users)
         return (
@@ -97,22 +103,9 @@ class Users extends React.Component{
                     <ModalHeader toggle={this.toggle2}>Product Detail</ModalHeader>
                     <ModalBody>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        <br />
-                        <Button 
-                            color="success" 
-                            onClick={this.toggleSupplier}
-                            style={{    
-                                width: "150px",
-                                height: "50px",
-                                backgroundColor: "#37474f",
-                                border: "0px",
-                                color: "#baafaf"
-                            }}
-                        >
-                            See Supplier
-                        </Button>
+                        <br />                      
                             <Modal 
-                                isOpen={this.state.supplierModal} 
+                                isOpen={this.state.productModal} 
                                 toggle={this.toggleNested} 
                                 onClosed={this.state.closeAll ? this.toggle2 : undefined}
                             >
@@ -121,7 +114,7 @@ class Users extends React.Component{
                                 <ModalFooter>
                                     <Button 
                                         color="primary" 
-                                        onClick={this.toggleSupplier}
+                                        onClick={this.toggleProducts}
                                         style={{    
                                             width: "80px",
                                             height: "50px",
@@ -136,6 +129,20 @@ class Users extends React.Component{
                             </Modal>
                     </ModalBody>
                     <ModalFooter>
+                        <Button 
+                            color="success" 
+                            onClick={this.toggleProducts}
+                            style={{    
+                                width: "150px",
+                                height: "50px",
+                                backgroundColor: "#37474f",
+                                border: "0px",
+                                color: "#baafaf",
+                                marginRight: "200px"
+                            }}
+                        >
+                            See Products
+                        </Button>
                         <Button 
                             color="primary" 
                             onClick={this.toggleModal}
