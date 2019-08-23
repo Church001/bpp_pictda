@@ -4,7 +4,8 @@ import { createBrowserHistory } from 'history';
 import {
     Router,
     Route,
-    Switch
+    Switch,
+    Redirect
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 /*import 'font-awesome/css/font-awesome.min.css';*/

@@ -55,6 +55,12 @@ class GeneralLayout extends React.Component{
         });
     }
 
+    componentWillMount(){
+            console.log("COMPONENT WILL MOUNT", this.props)
+            if(this.props.location.pathname === "/" && this.props.match.isExact === true){
+                this.props.history.push("/dashboard")
+            }    
+    }
     componentDidMount(){
         if(!_.isEmpty(User)){
             client.query({
@@ -115,7 +121,8 @@ class GeneralLayout extends React.Component{
         }
     }
 
-    componentWillUnmount(){}
+    componentWillUnmount(){
+    }
     componentDidUpdate(e) {
       if(e.history.action === "PUSH"){
         this.refs.mainPanel.scrollTop = 0;
@@ -144,7 +151,7 @@ class GeneralLayout extends React.Component{
                         <ProtectedRoute
                             rest={this.state.allData}
                             auth={auth}
-                            path="/"
+                            path="/dashboard"
                             exact
                             component={Dashboard}
                         />

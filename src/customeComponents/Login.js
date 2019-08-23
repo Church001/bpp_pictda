@@ -51,7 +51,8 @@ class Login extends React.Component{
         }))
         .then( response => {
             localStorage.setItem("__", response.data.signIn.token)
-            setTimeout(() => this.props.history.push("/"), 3000)
+            // setTimeout(() => this.props.history.push("/dashboard"), 3000)
+            window.location.replace("/dashboard")
         })
         
         .catch( error => {

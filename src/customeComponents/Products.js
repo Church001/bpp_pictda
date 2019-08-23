@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import  _ from "lodash"
 import logo1 from "../assets/img/logo1.png"
-
+import user from "../assets/img/user.png"
 
 class Products extends React.Component{
    
@@ -25,7 +25,7 @@ class Products extends React.Component{
             supplier: {},
             supplierModal: false,
             selection:"all",
-            loading: false,
+            loading: true,
             error:{}
         }
     }
@@ -33,7 +33,8 @@ class Products extends React.Component{
     componentWillMount(){
         if(!_.isEmpty(this.props.rest.products)){
             this.setState({
-                products:this.props.rest.products
+                products:this.props.rest.products,
+                loading: false
             })
         }
     }
@@ -68,7 +69,8 @@ class Products extends React.Component{
         })
         .then( result => {
             this.setState({
-                products: result.data.products
+                products: result.data.products,
+                loading: false
             })
         })
         .catch(error => {
@@ -196,6 +198,18 @@ class Products extends React.Component{
                             {
                             !_.isEmpty(this.state.supplier) ?
                                 <div className="team-info">
+                                    <div className="team-img">
+                                        <img 
+                                            className="img-fluid" 
+                                            src={user} 
+                                            alt="" 
+                                            style={{
+                                                width: "248px",
+                                                height: "250px",
+                                                marginLeft: "18%"
+                                            }}
+                                        />
+                                    </div>
                                     <h4>Supplier Name:{"    "}
                                         <span>
                                             {!_.isEmpty(this.state.supplier.surname)?this.state.supplier.surname:""}{" "}{!_.isEmpty(this.state.supplier.othernames)?this.state.supplier.othernames:""}
@@ -280,8 +294,7 @@ class Products extends React.Component{
                         >Done</Button>{' '}
                     </ModalFooter>
                 </Modal>
-                {!this.state.loading
-                ?
+                {
                 <div className="content">
                     <Row>
                         <Col xs={12} md={12}>
@@ -362,44 +375,71 @@ class Products extends React.Component{
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {_.isEmpty(this.state.error)
+                                            {
+                                            !this.state.loading
                                             ?
                                                 !_.isEmpty(this.state.products)
                                                 ?
                                                 this.filterProducts(this.state.products,this.state.selection).map( (product, i) => {
-                                                return(
-                                                    <tr
-                                                        key={product.id}
-                                                    >
-                                                        <td>{i+1}</td>
-                                                        <td>{product.name}</td>
-                                                        <td>{product.manufacturer}</td>
-                                                        <td>{product.category}</td>
-                                                        <td>{product.price_per_unit}</td>
-                                                        <td>
-                                                            <button
-                                                                onClick ={() => this.clickProduct(product)}
-                                                                style={{    
-                                                                    width: "80px",
-                                                                    height: "30px",
-                                                                    backgroundColor: "#37474f",
-                                                                    border: "0px",
-                                                                    color: "#baafaf"
-                                                                }}
-                                                            >
-                                                                View
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                    return(
+                                                        <tr
+                                                            key={product.id}
+                                                        >
+                                                            <td>{i+1}</td>
+                                                            <td>{product.name}</td>
+                                                            <td>{product.manufacturer}</td>
+                                                            <td>{product.category}</td>
+                                                            <td>{product.price_per_unit}</td>
+                                                            <td>
+                                                                <button
+                                                                    onClick ={() => this.clickProduct(product)}
+                                                                    style={{    
+                                                                        width: "80px",
+                                                                        height: "30px",
+                                                                        backgroundColor: "#37474f",
+                                                                        border: "0px",
+                                                                        color: "#baafaf"
+                                                                    }}
+                                                                >
+                                                                    View
+                                                                </button>
+                                                            </td>
+                                                        </tr>
                                                     )
 
                                                 })
                                                 :
-                                                <tr>
-                                                    <td>No Products</td>
-                                                </tr>
+                                                !_.isEmpty(this.state.error)
+                                                ?
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td
+                                                            style={{textAlign:"center"}}
+                                                        >
+                                                        An Error Occurred. <a href="/products">refresh</a>
+                                                        </td>
+                                                    </tr>
+                                                :
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td
+                                                            style={{textAlign:"center"}}
+                                                        >
+                                                            No Products found
+                                                        </td>
+                                                    </tr>
                                             :
-                                            <span>Network Error</span>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td
+                                                    style={{textAlign:"center"}}
+                                                >
+                                                    fetching products...
+                                                </td>
+                                            </tr>
                                             }   
                                         </tbody>
                                         </Table>
@@ -410,12 +450,6 @@ class Products extends React.Component{
                     </div>
                         </Col>
                     </Row>
-                </div>
-                :
-                <div className="content">
-                    <h1>
-                        Loading...
-                    </h1>
                 </div>
             }
             </div>

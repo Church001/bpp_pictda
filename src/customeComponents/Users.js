@@ -10,6 +10,8 @@ import Table from 'react-bootstrap/Table'
 // import {
 //     Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 // } from 'reactstrap';
+import logo1 from "../assets/img/logo1.png"
+import user from "../assets/img/user.png"
 import  _ from "lodash"
 
 const onSortFunction = {
@@ -29,7 +31,9 @@ class Users extends React.Component{
             clickedUser: {},
             currentData: "All",
             productModal: false,
-            products:[]
+            products:[],
+            loading: true,
+            error: {}
         }
     }
 
@@ -67,11 +71,15 @@ class Users extends React.Component{
         .then( result => {
             console.log("RESULT DASHBOARD", result.data)
             this.setState({
+                loading: false,
                 users: result.data.users
             })
         })
         .catch( error => {
             console.log("ERROR DASHBOARD", error)
+            this.setState({
+                error: error
+            })
         })
     }
 
@@ -96,21 +104,69 @@ class Users extends React.Component{
     }
 
     render(){
-        console.log("USERS",this.state.users)
+        console.log("USER's PRODUCTS",this.state.products)
         return (
             <div>
                 <Modal isOpen={!_.isEmpty(this.state.clickedUser)} toggle={this.toggle2} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle2}>Product Detail</ModalHeader>
+                    <ModalHeader toggle={this.toggle2}>Supplier Detail</ModalHeader>
                     <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        <br />                      
+                            <div className="team-info">
+                                <div className="team-img">
+                                    <img 
+                                        className="img-fluid" 
+                                        src={user} 
+                                        alt="" 
+                                        style={{
+                                            width: "248px",
+                                            height: "250px",
+                                            marginLeft: "18%"
+                                        }}
+                                    />
+                                </div>
+                                <h4>Supplier Name:{"    "}
+                                    <span>
+                                        {!_.isEmpty(this.state.clickedUser.surname)?this.state.clickedUser.surname:""}{" "}{!_.isEmpty(this.state.clickedUser.othernames)?this.state.clickedUser.othernames:""}
+                                    </span>
+                                </h4>
+                                <h4>Company:{"    "}
+                                    <span>
+                                        {!_.isEmpty(this.state.clickedUser.company_name)?this.state.clickedUser.company_name:""}
+                                    </span>
+                                </h4>
+                                <h4>Phone Number:{"    "}
+                                    <span>
+                                    {!_.isEmpty(this.state.clickedUser.phonenumber)?this.state.clickedUser.phonenumber:""}
+                                    </span>
+                                </h4>
+                                <h4>Address:{"    "}
+                                    <span>
+                                        {!_.isEmpty(this.state.clickedUser.company_address)?this.state.clickedUser.company_address:""}
+                                    </span>
+                                </h4>
+                                <h5>
+                                    Email:{"    "}
+                                    <span>
+                                        {!_.isEmpty(this.state.clickedUser.email)?this.state.clickedUser.email:""}
+                                    </span>
+                                </h5>
+                            </div>
+                                                 
                             <Modal 
                                 isOpen={this.state.productModal} 
                                 toggle={this.toggleNested} 
                                 onClosed={this.state.closeAll ? this.toggle2 : undefined}
                             >
                                 <ModalHeader>Products Detail</ModalHeader>
-                                <ModalBody>Stuff and things</ModalBody>
+                                <ModalBody>
+                                    {
+                                        !_.isEmpty(this.state.products)
+                                        ?
+                                        <Table responsive>
+                                        </Table>
+                                        :
+                                        <h3>Supplier has No Products</h3>
+                                    }
+                                </ModalBody>
                                 <ModalFooter>
                                     <Button 
                                         color="primary" 
@@ -157,31 +213,15 @@ class Users extends React.Component{
                     </ModalFooter>
                 </Modal>
                 
+            {
                 <div className="content">
                     <Row>
                     <Col xs={12} md={12}>
                         <div className="page-title">
                             <div className="float-left">
-                                {/* <h3 className="title">{this.state.currentData}</h3> */}
                             </div>
                             <div className="float-right">
                                 <h1 className="title"></h1>
-                                {/* <Dropdown 
-                                    direction="down" 
-                                    isOpen={this.state.btnDropleft} 
-                                    toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}
-                                >
-                                    <DropdownToggle caret>
-                                        Filter By Category
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem>All</DropdownItem>
-                                        <DropdownItem>Furnitures</DropdownItem>
-                                        <DropdownItem>Electronics</DropdownItem>
-                                        <DropdownItem>Building Materials</DropdownItem>
-                                        <DropdownItem>Stationaries</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown> */}
                             </div>
                         </div>
                         <div className="col-12">
@@ -216,33 +256,70 @@ class Users extends React.Component{
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            { this.state.users.map( (user, i) => {
-                                                return(
-                                                    <tr
-                                                        key={user.id}
+                                            { 
+                                            !this.state.loading
+                                            ?
+                                                !_.isEmpty(this.state.users)
+                                                ?
+                                                this.state.users.map( (user, i) => {
+                                                    return(
+                                                        <tr
+                                                            key={user.id}
+                                                        >
+                                                            <td>{i+1}</td>
+                                                            <td>{user.surname}{" "}{user.othernames}</td>
+                                                            <td>{user.company_name}</td>
+                                                            <td>{user.email}</td>
+                                                            <td>{user.phonenumber}</td>
+                                                            <td>
+                                                                <button
+                                                                    onClick ={() => this.clickProduct(user)}
+                                                                    style={{    
+                                                                        width: "80px",
+                                                                        height: "30px",
+                                                                        backgroundColor: "#37474f",
+                                                                        border: "0px",
+                                                                        color: "#baafaf"
+                                                                    }}
+                                                                >
+                                                                    View
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })
+                                                :
+                                                !_.isEmpty(this.state.error)
+                                                ?
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td
+                                                        style={{textAlign:"center"}}
                                                     >
-                                                        <td>{i+1}</td>
-                                                        <td>{user.surname}{" "}{user.othernames}</td>
-                                                        <td>{user.company_name}</td>
-                                                        <td>{user.email}</td>
-                                                        <td>{user.phonenumber}</td>
-                                                        <td>
-                                                            <button
-                                                                onClick ={() => this.clickProduct(user)}
-                                                                style={{    
-                                                                    width: "80px",
-                                                                    height: "30px",
-                                                                    backgroundColor: "#37474f",
-                                                                    border: "0px",
-                                                                    color: "#baafaf"
-                                                                }}
-                                                            >
-                                                                View
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })
+                                                       An Error Occurred. <a href="/users">refresh</a>
+                                                    </td>
+                                                </tr>
+                                                :
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td
+                                                        style={{textAlign:"center"}}
+                                                    >
+                                                        No Suppliers found
+                                                    </td>
+                                                </tr>
+                                            :
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td
+                                                    style={{textAlign:"center"}}
+                                                >
+                                                    fetching suppliers...
+                                                </td>
+                                            </tr>
                                             }   
                                         </tbody>
                                         </Table>
@@ -254,6 +331,7 @@ class Users extends React.Component{
                     </Col>
                     </Row>
                 </div>
+            }
             </div>
         );
     }

@@ -58,16 +58,12 @@ class Header extends React.Component{
 
     logout = () => {
         localStorage.removeItem("__")
-        // window.location.reload()
-        this.props.history.push("/login")
+        window.location.replace("/login")
     }
     searchToggle(){
-        //this.refs.searchbarToggle.classList.toggle('toggled');
         this.setState({
             searchOpen: !this.state.searchOpen
         });
-        //console.log(this.state.searchOpen);
-        //this.refs.searchbarToggle.classList.toggle('opened');
     }
     messagesddToggle(e){
         this.setState({
@@ -107,18 +103,12 @@ class Header extends React.Component{
     openSidebar(){
         document.documentElement.classList.toggle('nav-toggle');
         this.refs.sidebarToggle.classList.toggle('toggled');
-
-        // close chat bar if open on smaller screens
         if(window.innerWidth < 993){
             document.documentElement.classList.remove('nav-toggle-chat');
-           // this.refs.chatToggle.classList.remove('toggled');
         }
     }
     openChat(){
         document.documentElement.classList.toggle('nav-toggle-chat');
-       // this.refs.chatToggle.classList.toggle('toggled');
-
-        // close menu bar if open on smaller screens
         if(window.innerWidth < 993){
             document.documentElement.classList.remove('nav-toggle');
             this.refs.sidebarToggle.classList.remove('toggled');
@@ -131,15 +121,7 @@ class Header extends React.Component{
 
     openStyle(){
         document.documentElement.classList.toggle('nav-toggle-style');
-       // this.refs.chatToggle.classList.toggle('toggled');
-
-        // close menu bar if open on smaller screens
-        /*if(window.innerWidth < 993){
-            document.documentElement.classList.remove('nav-toggle');
-            this.refs.sidebarToggle.classList.remove('toggled');
-        }*/
     }
-    // function that adds color white/transparent to the navbar on resize (this is for the collapse)
     updateColor(){
         if(window.innerWidth < 993 && this.state.isOpen){
             this.setState({
@@ -228,9 +210,7 @@ class Header extends React.Component{
         }
     }
     render(){
-        // console.log("HEADER PROPS", this.props)
         return (
-            // add or remove classes depending if we are on full-screen-maps page or not
             <Navbar expand="lg"
                 className={
                     this.props.location.pathname.indexOf('full-screen-maps') !== -1 ?
@@ -283,4 +263,3 @@ class Header extends React.Component{
 }
 
 export default Header;
-// export default withRouter(Header);
