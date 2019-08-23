@@ -9,7 +9,7 @@ import {
 import logo from "../assets/img/logo1.png"
 import {client} from ".." 
 import { withRouter } from 'react-router';
-
+import _ from "lodash"
 
 class Login extends React.Component{ 
 
@@ -17,7 +17,8 @@ class Login extends React.Component{
         super(props)
         this.state = {
             email:"",
-            password:""
+            password:"",
+            loading: false
         }
     }
     componentDidMount(){
@@ -31,12 +32,14 @@ class Login extends React.Component{
     }
 
     submit = (username, password) => {
-        console.log(`email is ${username} and password is ${password}`)
+        this.setState({
+            loading: true
+        })
 
         client.mutate(({
             variables: {
-                username: this.state.email,
-                password: this.state.password
+                username: username,
+                password: password
             },
            mutation: gql `
                 mutation SignIn($username: String!, $password: String!){
@@ -47,8 +50,10 @@ class Login extends React.Component{
            ` 
         }))
         .then( response => {
-            this.props.history.push("/")
+            localStorage.setItem("__", response.data.signIn.token)
+            setTimeout(() => this.props.history.push("/"), 3000)
         })
+        
         .catch( error => {
             console.log(`ERROR ${error}`)
         })
@@ -92,6 +97,7 @@ class Login extends React.Component{
                                                         className="form-control"
                                                         placeholder="username"
                                                         onChange={e => this.onchange(e)}
+                                                        required
                                                         style={{
                                                             backgroundColor:"#efe7e7",
                                                             borderRadius:"10px"
@@ -109,15 +115,33 @@ class Login extends React.Component{
                                                         onChange={e => this.onchange(e)} 
                                                         size="20" 
                                                         placeholder="password"
+                                                        disabled={_.isEmpty(this.state.email)}
+                                                        required
                                                         style={{
                                                             backgroundColor:"#efe7e7",
-                                                            borderRadius:"10px"
+                                                            borderRadius:true?"10px": "20px"
                                                         }}
                                                     />
                                                 </label>
                                             </p>
                                         </form>
                                             <p className="submit">
+                                            { 
+                                                this.state.loading
+                                                ?
+                                               <button 
+                                                    type="button" 
+                                                    name="wp-submit" 
+                                                    id="wp-submit" 
+                                                    className="btn btn-accent btn-block" 
+                                                    value="Sign In" 
+                                                    style={{backgroundColor:"red"}}
+                                                    disabled
+                                                    // onClick={() => this.submit(this.state.email, this.state.password)}
+                                                >
+                                                 Loading...
+                                                </button>
+                                                :
                                                 <button 
                                                     type="button" 
                                                     name="wp-submit" 
@@ -125,10 +149,12 @@ class Login extends React.Component{
                                                     className="btn btn-accent btn-block" 
                                                     value="Sign In" 
                                                     style={{backgroundColor:"green"}}
+                                                    disabled={_.isEmpty(this.state.password)}
                                                     onClick={() => this.submit(this.state.email, this.state.password)}
                                                 >
                                                  Submit
                                                 </button>
+                                            }
                                             </p>
                                     </div>
                                 </div>

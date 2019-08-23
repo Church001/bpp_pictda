@@ -18,9 +18,25 @@ import Login from './customeComponents/Login';
 import GeneralLayout from './customeComponents/GeneralLayout';
 import Error from './customeComponents/Error';
 // import ProtectedRoute from './customeComponents/ProtectedRoute';
+import jwt_decode from "jwt-decode"
 
 const hist = createBrowserHistory();
 
+let user = ""
+if(localStorage.__){
+    user = jwt_decode(localStorage.__)
+    // console.log("USER DECODED", user)
+    const currentTime = Date.now() / 1000000;
+    if (user.exp < currentTime) {
+      window.location.href = '/login';
+    }
+    if(user.role !== "admin"){
+        window.location.href = '/login';
+    }
+}
+// else{
+//     window.location.href = '/login';
+// }
 
 export const client = new ApolloClient({
     uri: "https://bpp-mobile.herokuapp.com/graphql"
@@ -31,18 +47,6 @@ ReactDOM.render(
     <ApolloProvider client={client}>
         <Router history={hist} basename={process.env.REACT_APP_BASEDIR}>
             <Switch>
-                {/* {
-                    indexRoutes.map((prop,key) => {
-                        console.log("ROUTES", prop)
-                        return ( 
-                            <Route
-                                path={prop.path}
-                                key={key}
-                                component={prop.component}
-                            />
-                        );
-                    })
-                } */}
                 <Route 
                     path='/login'
                     component={Login}

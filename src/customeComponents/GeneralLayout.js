@@ -4,7 +4,7 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom';
-
+import _ from "lodash"
 // import { Header, Footer, Sidebar, ChatSidebar, Stylebar } from 'components'
 import dashboardRoutes from 'routes/general.jsx';
 import { topbarStyle, menuStyle, menuType, topbarType, navWidth, chatWidth, chatType } from 'variables/settings/general.jsx';
@@ -17,8 +17,14 @@ import customRoute from './routes';
 import ProtectedRoute from './ProtectedRoute';
 import gql from 'graphql-tag';
 import {client} from ".."
+import jwt_decode from "jwt-decode"
+import Footer from "./Footer"
 
-//var ps;
+let User = {}
+
+if(localStorage.__){
+    User = jwt_decode(localStorage.__)
+}
 
 class GeneralLayout extends React.Component{
     constructor(props) {
@@ -50,19 +56,33 @@ class GeneralLayout extends React.Component{
     }
 
     componentDidMount(){
-        client.query({
-            query: gql `
-            {
-                products {
-                    name,
-                    id,
-                    manufacturer,
-                    price_per_unit,
-                    category,
-                    company_name,
-                    description,
-                    user {
-                         id,
+        if(!_.isEmpty(User)){
+            client.query({
+                query: gql `
+                {
+                    products {
+                        name,
+                        id,
+                        manufacturer,
+                        price_per_unit,
+                        category,
+                        company_name,
+                        description,
+                        user {
+                            id,
+                            surname,
+                            othernames,
+                            phonenumber,
+                            company_address,
+                            company_name,
+                            email,
+                            description,
+                            role,
+                        }
+                    },
+
+                    users{
+                        id,
                         surname,
                         othernames,
                         phonenumber,
@@ -71,42 +91,28 @@ class GeneralLayout extends React.Component{
                         email,
                         description,
                         role,
-                    }
-                },
-
-                users{
-                    id,
-                    surname,
-                    othernames,
-                    phonenumber,
-                    company_address,
-                    company_name,
-                    email,
-                    description,
-                    role,
-                    products{
-                        name,
-                        id,
-                        manufacturer,
-                        price_per_unit,
-                        category,
-                        company_name,
-                        description
+                        products{
+                            name,
+                            id,
+                            manufacturer,
+                            price_per_unit,
+                            category,
+                            company_name,
+                            description
+                        }
                     }
                 }
-            }
-            `
-        })
-        .then( result => {
-            console.log("GENERALLAYOUT RESULT", result.data)
-            this.setState({
-                // loading: false
-                allData: result.data
+                `
             })
-        })
-        .catch( error => {
-            console.log("ERROR DASHBOARD", error)
-        })
+            .then( result => {
+                this.setState({
+                    allData: result.data
+                })
+            })
+            .catch( error => {
+                // console.log("ERROR DASHBOARD", error)
+            })
+        }
     }
 
     componentWillUnmount(){}
@@ -119,11 +125,10 @@ class GeneralLayout extends React.Component{
 
     render(){
       let  auth = {
-          isAuthenticated: true
-      }
+          isAuthenticated: !_.isEmpty(User)
+        }
         return (
             <div className="wrapper" ref="themeWrapper" data-menu={this.state.menuColor} data-topbar={this.state.topbarColor} data-menutype={this.state.menuType} data-topbartype={this.state.topbarType}>
-
                 <Header 
                     {...this.props} 
                     navtype={navWidth} 
@@ -132,30 +137,10 @@ class GeneralLayout extends React.Component{
                 <Sidebar 
                     {...this.props} 
                     routes={customRoute} 
-                    // routes={dashboardRoutes} 
                     admintype={'general'}
                 />
                 <div className="main-panel" ref="mainPanel">
                     <Switch>
-                        {/* {
-                            dashboardRoutes.map((prop,key) => {
-                                console.log("PROPS", prop)
-                                if(prop.collapse){
-                                    return prop.views.map((prop2,key2) => {
-                                        return (
-                                            <Route path={prop2.path} component={prop2.component} key={key2}/>
-                                        );
-                                    })
-                                }
-                                if(prop.redirect)
-                                    return (
-                                        <Redirect from={prop.path} to={prop.pathTo} key={key}/>
-                                    );
-                                return (
-                                    <Route path={prop.path} component={prop.component} key={key}/>
-                                );
-                            })
-                        } */}
                         <ProtectedRoute
                             rest={this.state.allData}
                             auth={auth}
@@ -182,10 +167,8 @@ class GeneralLayout extends React.Component{
                             to="/error"
                         />
                     </Switch> 
-                    {/* <Footer fluid/> */}
                 </div>
-                {/* <ChatSidebar {...this.props} routes={dashboardRoutes} chatwidth={chatWidth}  chattype={chatType}/>
-                <Stylebar menuSettings={this.menuSettings} topbarSettings={this.topbarSettings} /> */}
+                {/* <Footer/> */}
             </div>
         );
     }

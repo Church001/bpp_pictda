@@ -57,7 +57,9 @@ class Header extends React.Component{
     }
 
     logout = () => {
-        // this.props.history.push("/login")
+        localStorage.removeItem("__")
+        // window.location.reload()
+        this.props.history.push("/login")
     }
     searchToggle(){
         //this.refs.searchbarToggle.classList.toggle('toggled');
@@ -226,6 +228,7 @@ class Header extends React.Component{
         }
     }
     render(){
+        // console.log("HEADER PROPS", this.props)
         return (
             // add or remove classes depending if we are on full-screen-maps page or not
             <Navbar expand="lg"

@@ -12,7 +12,7 @@ class Footer extends React.Component{
                 <Container fluid={this.props.fluid ? true:false}>
                     
                     <div className="copyright">
-                        &copy; {1900 + (new Date()).getYear()}, <a href="https://themeforest.net/user/themepassion/portfolio" target="_blank" rel="noopener noreferrer">Zest: Multi-Concept React Admin Template</a>
+                        &copy; {1900 + (new Date()).getYear()}, <p>Designed by PICTDA</p>
                     </div>
                 </Container>
             </footer>

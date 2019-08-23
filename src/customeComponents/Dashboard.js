@@ -257,11 +257,25 @@ class Dashboard extends React.Component{
                     </Row>
                 </div>
                 :
-                <div className="content">
-                    <h1>
-                        Loading...
-                    </h1>
+                
+        <div>
+        <div className="">
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-xl-12">
+                        <div className="content-body">
+                            <div className="row">
+                                <div className="col-12">
+                                    <h3 className="page_error_code text-primary"/>                     
+                                    <h1 className="page_error_info">loading...</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
             }
             </div>
         );

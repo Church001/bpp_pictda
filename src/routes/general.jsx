@@ -164,18 +164,19 @@ var dashRoutes = [
     /* { path: BASEDIR+"/dashboard", name: "Dashboard", icon: "dashboard", badge: "", component: General },*/
 
     { 
-        path: "#", name: "Dashboards", icon: "speedometer", type: "dropdown", parentid:"dashboards",
-            child: [
-                { path: BASEDIR+"/dashboard", name: "Dashboard 1"},
-                { path: BASEDIR+"/dashboard2", name: "Dashboard 2"},
-                { path: BASEDIR+"/dashboard3", name: "Dashboard 3"},
-                { path: BASEDIR+"/dashboard4", name: "Dashboard 4"},
-                { path: BASEDIR+"/dashboard5", name: "Dashboard 5"},
-                { path: BASEDIR+"/dashboard6", name: "Dashboard 6"},
-                { path: BASEDIR+"/dashboard7", name: "Dashboard 7"},
-                { path: BASEDIR+"/dashboard8", name: "Dashboard 8"},
-                { path: BASEDIR+"/dashboard9", name: "Dashboard 9"},
-            ]
+        path: "/", name: "Dashboards", icon: "speedometer" 
+        // parentid:"dashboards",
+            // child: [
+            //     { path: BASEDIR+"/dashboard", name: "Dashboard 1"},
+            //     { path: BASEDIR+"/dashboard2", name: "Dashboard 2"},
+            //     { path: BASEDIR+"/dashboard3", name: "Dashboard 3"},
+            //     { path: BASEDIR+"/dashboard4", name: "Dashboard 4"},
+            //     { path: BASEDIR+"/dashboard5", name: "Dashboard 5"},
+            //     { path: BASEDIR+"/dashboard6", name: "Dashboard 6"},
+            //     { path: BASEDIR+"/dashboard7", name: "Dashboard 7"},
+            //     { path: BASEDIR+"/dashboard8", name: "Dashboard 8"},
+            //     { path: BASEDIR+"/dashboard9", name: "Dashboard 9"},
+            // ]
     },
 
         { path: BASEDIR+"/dashboard", component: General, type: "child"},
@@ -232,16 +233,17 @@ var dashRoutes = [
 
 
     { 
-    	path: "#", name: "Widgets", icon: "puzzle", type: "dropdown", parentid:"widgets",
-    	child: [
-                    { path: BASEDIR+"/widget-loops", name: "Loops"},
-                    { path: BASEDIR+"/widget-tiles-counter", name: "Counter Tiles"},
-                    { path: BASEDIR+"/widget-tiles-progress", name: "Progress Tiles"},
-                    { path: BASEDIR+"/widget-socialmedia", name: "Social Media"},
-                    { path: BASEDIR+"/widget-misc", name: "Miscellaneous"},
+        path: "/products", name: "Products", icon: "puzzle"
+        // , type: "dropdown", parentid:"widgets",
+    	// child: [
+        //             { path: BASEDIR+"/widget-loops", name: "Loops"},
+        //             { path: BASEDIR+"/widget-tiles-counter", name: "Counter Tiles"},
+        //             { path: BASEDIR+"/widget-tiles-progress", name: "Progress Tiles"},
+        //             { path: BASEDIR+"/widget-socialmedia", name: "Social Media"},
+        //             { path: BASEDIR+"/widget-misc", name: "Miscellaneous"},
                     /*{ path: BASEDIR+"/widget-graphs", name: "Graphs"},
                     { path: BASEDIR+"/widget-todo", name: "To Do Tasks"},*/
-    	]
+    	// ]
 	},
     { path: BASEDIR+"/widget-loops", component: Widgetsloops, type: "child"},
 	{ path: BASEDIR+"/widget-tiles-counter", component: Widgetscountertiles, type: "child"},

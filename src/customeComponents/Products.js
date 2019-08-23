@@ -1,6 +1,4 @@
-import moment from 'moment'; // Example for onSort prop
 import React from 'react'; // Import React
-import Datatable from 'react-bs-datatable'; // Import this package
 import {
     Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
 } from 'reactstrap';
@@ -11,12 +9,7 @@ import {
     Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 import  _ from "lodash"
-
-const onSortFunction = {
-  date(columnValue) {
-    return moment(columnValue, 'Do MMMM YYYY').valueOf();
-  },
-};
+import logo1 from "../assets/img/logo1.png"
 
 
 class Products extends React.Component{
@@ -32,12 +25,12 @@ class Products extends React.Component{
             supplier: {},
             supplierModal: false,
             selection:"all",
-            loading: false
+            loading: false,
+            error:{}
         }
     }
 
     componentWillMount(){
-        console.log("COMPONENT WILL MOUNT", this.props.rest.products)
         if(!_.isEmpty(this.props.rest.products)){
             this.setState({
                 products:this.props.rest.products
@@ -74,13 +67,14 @@ class Products extends React.Component{
             `
         })
         .then( result => {
-            console.log("RESULT", result.data)
             this.setState({
                 products: result.data.products
             })
         })
         .catch(error => {
-            console.log("ERROR", error)
+            this.setState({
+                error: error
+            })
         })
         }
     }
@@ -138,35 +132,110 @@ class Products extends React.Component{
     }
 
     render(){
+        console.log("ERROR", this.state.error)
         return (
             <div>
                 <Modal isOpen={!_.isEmpty(this.state.clickedProduct)} toggle={this.toggle2} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle2}>Product Detail</ModalHeader>
+                    <ModalHeader toggle={this.toggle2}>
+                       Product Detail
+                    </ModalHeader>
                     <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        <br />
-                        {/* <Button 
-                            color="success" 
-                            onClick={this.toggleSupplier}
-                            style={{    
-                                width: "150px",
-                                height: "50px",
-                                backgroundColor: "#37474f",
-                                border: "0px",
-                                color: "#baafaf"
-                            }}
-                        >
-                            See Supplier
-                        </Button> */}
+                        <div className="team-img">
+                            <img 
+                                className="img-fluid" 
+                                src={logo1} 
+                                alt="" 
+                                style={{
+                                    width: "248px",
+                                    height: "250px",
+                                    marginLeft: "18%"
+                                }}
+                            />
+                        </div>
+                        <div className="team-info">
+                            <h4>Product Name:{"    "}
+                                <span>
+                                    {!_.isEmpty(this.state.clickedProduct.name)?this.state.clickedProduct.name:""}
+                                </span>
+                            </h4>
+                            <h4>Manufacturer:{"    "}
+                                <span>
+                                    {!_.isEmpty(this.state.clickedProduct.manufacturer)?this.state.clickedProduct.manufacturer:""}
+                                </span>
+                            </h4>
+                            <h4>Price:{"    "}
+                                <span>
+                                ₦{!_.isEmpty(this.state.clickedProduct.price_per_unit)?this.state.clickedProduct.price_per_unit:""}
+                                </span>
+                                {"    "}(per unit)
+                            </h4>
+                            <h4>Category:{"    "}
+                                <span>
+                                    {!_.isEmpty(this.state.clickedProduct.category)?this.state.clickedProduct.company_name:""}
+                                </span>
+                            </h4>
+                            <h4>Company Name:{"    "}
+                                <span>
+                                    {!_.isEmpty(this.state.clickedProduct.company_name)}
+                                </span>
+                            </h4>
+                            <h5>
+                                Description:{"    "}
+                                <span>
+                                    {!_.isEmpty(this.state.clickedProduct.description)?this.state.clickedProduct.description:""}
+                                </span>
+                            </h5>
+                        </div>
                             <Modal 
                                 isOpen={this.state.supplierModal} 
                                 toggle={this.toggleNested} 
                                 onClosed={this.state.closeAll ? this.toggle2 : undefined}
                             >
                                 <ModalHeader>Supplier Detail</ModalHeader>
-                                <ModalBody>Stuff and things</ModalBody>
-                                <ModalFooter>
+                                <ModalBody>
+                            {
+                            !_.isEmpty(this.state.supplier) ?
+                                <div className="team-info">
+                                    <h4>Supplier Name:{"    "}
+                                        <span>
+                                            {!_.isEmpty(this.state.supplier.surname)?this.state.supplier.surname:""}{" "}{!_.isEmpty(this.state.supplier.othernames)?this.state.supplier.othernames:""}
+                                        </span>
+                                    </h4>
+                                    <h4>Company:{"    "}
+                                        <span>
+                                            {!_.isEmpty(this.state.supplier.company_name)?this.state.supplier.company_name:""}
+                                        </span>
+                                    </h4>
+                                    <h4>Phone Number:{"    "}
+                                        <span>
+                                        {!_.isEmpty(this.state.supplier.phonenumber)?this.state.supplier.phonenumber:""}
+                                        </span>
+                                    </h4>
+                                    <h4>Address:{"    "}
+                                        <span>
+                                            {!_.isEmpty(this.state.supplier.company_address)?this.state.supplier.company_address:""}
+                                        </span>
+                                    </h4>
+                                    <h4>Company Name:{"    "}
+                                        <span>
+                                            {!_.isEmpty(this.state.clickedProduct.company_name)?this.state.clickedProduct.company_name:""}
+                                        </span>
+                                    </h4>
+                                    <h5>
+                                        Email:{"    "}
+                                        <span>
+                                            {!_.isEmpty(this.state.supplier.email)?this.state.supplier.email:""}
+                                        </span>
+                                    </h5>
+                                </div>
+                                :
+                                <div className="team-info">
+                                    <h2>No Supplier for this Product</h2>
+                                </div>
+                            }
 
+                                </ModalBody>
+                                <ModalFooter>
                                     <Button 
                                         color="primary" 
                                         onClick={this.toggleSupplier}
@@ -293,7 +362,11 @@ class Products extends React.Component{
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            { this.filterProducts(this.state.products,this.state.selection).map( (product, i) => {
+                                            {_.isEmpty(this.state.error)
+                                            ?
+                                                !_.isEmpty(this.state.products)
+                                                ?
+                                                this.filterProducts(this.state.products,this.state.selection).map( (product, i) => {
                                                 return(
                                                     <tr
                                                         key={product.id}
@@ -318,8 +391,15 @@ class Products extends React.Component{
                                                             </button>
                                                         </td>
                                                     </tr>
-                                                )
-                                            })
+                                                    )
+
+                                                })
+                                                :
+                                                <tr>
+                                                    <td>No Products</td>
+                                                </tr>
+                                            :
+                                            <span>Network Error</span>
                                             }   
                                         </tbody>
                                         </Table>
