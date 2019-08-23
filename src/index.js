@@ -5,7 +5,6 @@ import {
     Router,
     Route,
     Switch,
-    Redirect
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 /*import 'font-awesome/css/font-awesome.min.css';*/
@@ -13,7 +12,6 @@ import 'assets/scss/zest-admin.css';
 import 'assets/fonts/simple-line-icons.css';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import indexRoutes from 'routes/index.jsx';
 import Login from './customeComponents/Login';
 // import Dashboard from './customeComponents/Dashboard';
 import GeneralLayout from './customeComponents/GeneralLayout';

@@ -63,7 +63,6 @@ class Dashboard extends React.Component{
     }
     
     componentWillMount(){
-        console.log("COMPONENT WILL MOUNT DASHBOARD", this.props.rest)
         if(!_.isEmpty(this.props.rest.products)||!_.isEmpty(this.props.rest.users)){
             this.setState({
                 products: this.props.rest.products,
@@ -106,7 +105,6 @@ class Dashboard extends React.Component{
                 `
             })
             .then( result => {
-                console.log("RESULT DASHBOARD", result.data.products)
                 this.setState({
                     products: result.data.products,
                     users: result.data.users,
@@ -115,7 +113,7 @@ class Dashboard extends React.Component{
                 })
             })
             .catch( error => {
-                console.log("ERROR DASHBOARD", error)
+                // console.log("ERROR DASHBOARD", error)
             })
         }
         else {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Collapse, Navbar, NavbarBrand, Nav, NavItem,
+    Collapse, Navbar, Nav,
     Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
     Container, InputGroup, InputGroupAddon, Input
 } from 'reactstrap';
@@ -58,7 +58,7 @@ class Header extends React.Component{
 
     logout = () => {
         localStorage.removeItem("__")
-        window.location.replace("/login")
+        this.props.history.push("/login")
     }
     searchToggle(){
         this.setState({

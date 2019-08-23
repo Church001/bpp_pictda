@@ -1,6 +1,6 @@
 import React from 'react'; // Import React
 import {
-    Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
+    Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 import gql from 'graphql-tag';
 import {client} from ".."
@@ -134,7 +134,6 @@ class Products extends React.Component{
     }
 
     render(){
-        console.log("ERROR", this.state.error)
         return (
             <div>
                 <Modal isOpen={!_.isEmpty(this.state.clickedProduct)} toggle={this.toggle2} className={this.props.className}>

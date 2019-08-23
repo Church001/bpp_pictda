@@ -1,13 +1,10 @@
 import React from 'react';
 import {
-    Route,
     Switch,
     Redirect
 } from 'react-router-dom';
 import _ from "lodash"
-// import { Header, Footer, Sidebar, ChatSidebar, Stylebar } from 'components'
-import dashboardRoutes from 'routes/general.jsx';
-import { topbarStyle, menuStyle, menuType, topbarType, navWidth, chatWidth, chatType } from 'variables/settings/general.jsx';
+import { topbarStyle, menuStyle, menuType, topbarType, navWidth} from 'variables/settings/general.jsx';
 import Dashboard from './Dashboard';
 import Products from './Products';
 import Users from './Users';
@@ -18,7 +15,6 @@ import ProtectedRoute from './ProtectedRoute';
 import gql from 'graphql-tag';
 import {client} from ".."
 import jwt_decode from "jwt-decode"
-import Footer from "./Footer"
 
 let User = {}
 
@@ -56,7 +52,6 @@ class GeneralLayout extends React.Component{
     }
 
     componentWillMount(){
-            console.log("COMPONENT WILL MOUNT", this.props)
             if(this.props.location.pathname === "/" && this.props.match.isExact === true){
                 this.props.history.push("/dashboard")
             }    

@@ -1,6 +1,4 @@
-import moment from 'moment'; // Example for onSort prop
 import React from 'react'; // Import React
-import Datatable from 'react-bs-datatable'; // Import this package
 import {
     Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
 } from 'reactstrap';
@@ -10,15 +8,9 @@ import Table from 'react-bootstrap/Table'
 // import {
 //     Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 // } from 'reactstrap';
-import logo1 from "../assets/img/logo1.png"
 import user from "../assets/img/user.png"
 import  _ from "lodash"
 
-const onSortFunction = {
-  date(columnValue) {
-    return moment(columnValue, 'Do MMMM YYYY').valueOf();
-  },
-};
 
 class Users extends React.Component{
 
@@ -38,7 +30,7 @@ class Users extends React.Component{
     }
 
     componentWillMount(){
-        console.log("COMPONENT WILL MOUNT", this.props.rest)
+        // console.log("COMPONENT WILL MOUNT", this.props)
     }
     
     componentDidMount(){
@@ -69,14 +61,12 @@ class Users extends React.Component{
             `
         })
         .then( result => {
-            console.log("RESULT DASHBOARD", result.data)
             this.setState({
                 loading: false,
                 users: result.data.users
             })
         })
         .catch( error => {
-            console.log("ERROR DASHBOARD", error)
             this.setState({
                 error: error
             })
@@ -104,7 +94,6 @@ class Users extends React.Component{
     }
 
     render(){
-        console.log("USER's PRODUCTS",this.state.products)
         return (
             <div>
                 <Modal isOpen={!_.isEmpty(this.state.clickedUser)} toggle={this.toggle2} className={this.props.className}>
@@ -162,6 +151,29 @@ class Users extends React.Component{
                                         !_.isEmpty(this.state.products)
                                         ?
                                         <Table responsive>
+                                            <thead>
+                                                <tr>
+                                                <th>S/N</th>
+                                                <th>Product</th>
+                                                <th>Category</th>
+                                                <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {this.state.products.map( (product, i) => {
+                                                   return( 
+                                                        <tr
+                                                            key={product.id}
+                                                        >
+                                                            <td>{i+1}</td>
+                                                            <td>{product.name}</td>
+                                                            <td>{product.category}</td>
+                                                            <td>₦{product.price_per_unit}</td>
+                                                        </tr>
+                                                    )
+                                                })
+                                                }
+                                            </tbody>
                                         </Table>
                                         :
                                         <h3>Supplier has No Products</h3>

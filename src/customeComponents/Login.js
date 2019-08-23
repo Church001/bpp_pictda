@@ -8,7 +8,6 @@ import {
 } from 'components';
 import logo from "../assets/img/logo1.png"
 import {client} from ".." 
-import { withRouter } from 'react-router';
 import _ from "lodash"
 
 class Login extends React.Component{ 
@@ -56,7 +55,7 @@ class Login extends React.Component{
         })
         
         .catch( error => {
-            console.log(`ERROR ${error}`)
+            // console.log(`ERROR ${error}`)
         })
     }   
 
