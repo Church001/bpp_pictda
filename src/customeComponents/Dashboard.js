@@ -126,7 +126,7 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        console.log("STATE", this.state.products)
+        // console.log("STATE", this.state.products)
         return (
             <div>
             { 

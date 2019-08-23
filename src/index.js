@@ -58,6 +58,7 @@ ReactDOM.render(
                 <Route 
                     path='/'
                     component={GeneralLayout}
+                    
                 />
             </Switch>
         </Router>

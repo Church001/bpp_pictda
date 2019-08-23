@@ -1,13 +1,16 @@
 import React from 'react'; // Import React
 import {
-    Row, Col,Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
+    Row, Col,Button, Modal, 
+    ModalHeader, 
+    ModalBody, 
+    ModalFooter, 
+    InputGroup, 
+    InputGroupAddon, 
+    Input
 } from 'reactstrap';
 import gql from 'graphql-tag';
 import {client} from ".."
 import Table from 'react-bootstrap/Table'
-// import {
-//     Dropdown, DropdownToggle, DropdownMenu, DropdownItem
-// } from 'reactstrap';
 import user from "../assets/img/user.png"
 import  _ from "lodash"
 
@@ -231,6 +234,22 @@ class Users extends React.Component{
                     <Col xs={12} md={12}>
                         <div className="page-title">
                             <div className="float-left">
+                            <form 
+                                className="topbar-search-form"
+                                style={{
+                                    marginTop:"5px"
+                                }}
+                                >
+                                <InputGroup className="topbar-search open">
+                                    <InputGroupAddon addonType="append" 
+                                        // onClick={() => this.searchToggle()}
+                                    >
+                                        <i className="i-magnifier">
+                                        </i>
+                                    </InputGroupAddon>
+                                    <Input placeholder="Search..." />
+                                </InputGroup>
+                            </form>
                             </div>
                             <div className="float-right">
                                 <h1 className="title"></h1>

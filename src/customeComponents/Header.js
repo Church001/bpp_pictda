@@ -5,15 +5,7 @@ import {
     Container, InputGroup, InputGroupAddon, Input
 } from 'reactstrap';
 import logo from "../assets/img/logo1.png"
-// import {
-//     Messages, Notifications
-// } from 'components';
-
 import dashboardRoutes from 'routes/general.jsx';
-// import { withRouter } from 'react-router';
-
-// import { messages } from 'variables/topbar.jsx';
-// import { notifications } from 'variables/topbar.jsx';
 
 var IMGDIR = process.env.REACT_APP_IMGDIR;
 class Header extends React.Component{

@@ -6,7 +6,8 @@ import gql from 'graphql-tag';
 import {client} from ".."
 import Table from 'react-bootstrap/Table'
 import {
-    Dropdown, DropdownToggle, DropdownMenu, DropdownItem
+    Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
+    InputGroup, InputGroupAddon, Input
 } from 'reactstrap';
 import  _ from "lodash"
 import logo1 from "../assets/img/logo1.png"
@@ -26,7 +27,8 @@ class Products extends React.Component{
             supplierModal: false,
             selection:"all",
             loading: true,
-            error:{}
+            error:{},
+            displayProducts:[]
         }
     }
 
@@ -130,6 +132,33 @@ class Products extends React.Component{
         this.setState({
             clickedProduct: data,
             supplier:data.user
+        })
+    }
+
+    filterer = (obj, keyword) => {
+        let result = false
+        for(let key in obj){
+            if(_.includes(obj[key], keyword)){
+                return true
+            }
+        }
+        return result
+    }
+
+    onSearch = (e, data) => {
+        e.preventDefault()
+        let result = []
+        let word = ""
+        word = word + e.target.value
+        let searchWord = word
+        data.map( one => {
+            if(this.filterer(one, searchWord) === true){
+                result.push(one)
+            }
+            // console.log("MATCHED",one)
+        })
+        this.setState({
+            products: result
         })
     }
 
@@ -298,7 +327,29 @@ class Products extends React.Component{
                     <Row>
                         <Col xs={12} md={12}>
 
+                   
                     <div className="page-title">
+                        <div className="float-left">
+                        <form 
+                            className="topbar-search-form"
+                            style={{
+                                marginTop:"5px"
+                            }}
+                            >
+                            <InputGroup className="topbar-search open">
+                                <InputGroupAddon addonType="append" 
+                                    onClick={() => this.searchToggle()}
+                                >
+                                    <i className="i-magnifier">
+                                    </i>
+                                </InputGroupAddon>
+                                <Input 
+                                    placeholder="Search..." 
+                                    onChange={(e) => this.onSearch(e, this.props.rest.products)}
+                                />
+                            </InputGroup>
+                        </form>
+                        </div>
                         <div className="float-right">
                                 <h1 className="title"></h1>
                                 <Dropdown 
