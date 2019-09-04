@@ -6,6 +6,7 @@ import CountTo from 'react-count-to';
 import gql from 'graphql-tag';
 import {client} from ".."
 import _ from "lodash"
+import productIcon from "../assets/img/productIcon.png"
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -147,7 +148,7 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
-                                                <i className='i-user icon-lg'></i>
+                                                <i className='i-wrench icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={0} to={this.filterBuilding(this.state.products).length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Building Material</span>
@@ -159,7 +160,7 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-success">
                                             <div className="wid-content">
-                                                <i className='i-heart icon-lg'></i>
+                                                <i className='i-pencil icon-lg'></i>
                                                 <h2>
                                                     <CountTo speed={4000} from={0} to={this.filterStationaries(this.state.products).length}/>
                                                 </h2>
@@ -173,7 +174,7 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-danger">
                                             <div className="wid-content">
-                                                <i className='i-user icon-lg'></i>
+                                                <i className='i-drawer icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={0} to={this.filterFurniture(this.state.products).length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Furnitures</span>
@@ -185,7 +186,7 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-purple">
                                             <div className="wid-content">
-                                                <i className='i-share icon-lg'></i>
+                                                <i className='i-screen-desktop icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={0} to={this.filterElectronics(this.state.products).length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Electronics</span>
@@ -197,7 +198,7 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
-                                                <i className='i-user icon-lg'></i>
+                                                <i className='i-people icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={0} to={this.state.users.length}/></h2>
                                                 {/* <h2><span></span></h2> */}
                                                 <div className="clearfix"></div>
@@ -234,7 +235,7 @@ class Dashboard extends React.Component{
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                         <div className="tile-counter bg-success">
                                             <div className="wid-content">
-                                                <i className='i-note icon-lg'></i>
+                                                <i className='i-social-dropbox icon-lg'></i>
                                                 <h2><CountTo speed={3000} from={0} to={this.state.products.length}/></h2>
                                                 <div className="clearfix"></div>
                                                 <span>Products</span>
