@@ -149,13 +149,12 @@ class Products extends React.Component{
         e.preventDefault()
         let result = []
         let word = ""
-        word = word + e.target.value
+        word = word + e.target.value.toUpperCase()
         let searchWord = word
         data.map( one => {
-            if(this.filterer(one, searchWord) === true){
+            if(this.filterer(one, word) === true){
                 result.push(one)
             }
-            // console.log("MATCHED",one)
         })
         this.setState({
             products: result

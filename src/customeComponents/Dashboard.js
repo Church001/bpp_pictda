@@ -8,7 +8,6 @@ import {client} from ".."
 import _ from "lodash"
 
 class Dashboard extends React.Component{
-   
     constructor(props) {
         super(props);
         this.state = {
@@ -255,25 +254,24 @@ class Dashboard extends React.Component{
                     </Row>
                 </div>
                 :
-                
-        <div>
-        <div className="">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-xl-12">
-                        <div className="content-body">
-                            <div className="row">
-                                <div className="col-12">
-                                    <h3 className="page_error_code text-primary"/>                     
-                                    <h1 className="page_error_info">loading...</h1>
+                <div>
+                <div className="">
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-xl-12">
+                                <div className="content-body">
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <h3 className="page_error_code text-primary"/>                     
+                                            <h1 className="page_error_info">loading...</h1>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
             }
             </div>
         );
