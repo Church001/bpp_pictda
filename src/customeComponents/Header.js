@@ -219,12 +219,12 @@ class Header extends React.Component{
                                 <i className="i-menu"></i>
                             </button>
                         </div>
-                            <form className="topbar-search-form">
+                            {/* <form className="topbar-search-form">
                                 <InputGroup className={"topbar-search "+(this.state.searchOpen === true ? "open":"")}>
                                     <InputGroupAddon addonType="append" onClick={() => this.searchToggle()}><i className="i-magnifier"></i></InputGroupAddon>
                                     <Input placeholder="Search..." />
                                 </InputGroup>
-                            </form>
+                            </form> */}
                     </div>
                     
                     <Collapse isOpen={this.state.isOpen} navbar className="navbar-right">
