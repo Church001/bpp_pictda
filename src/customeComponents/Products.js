@@ -431,6 +431,7 @@ class Products extends React.Component{
                                                 ?
                                                 this.filterProducts(this.state.products,this.state.selection).map( (product, i) => {
                                                     return(
+                                                        // 
                                                         <tr
                                                             key={product.id}
                                                         >
@@ -438,7 +439,7 @@ class Products extends React.Component{
                                                             <td>{product.name}</td>
                                                             <td>{product.manufacturer}</td>
                                                             <td>{product.category}</td>
-                                                            <td>{Number(product.price_per_unit).toLocaleString()}</td>
+                                                            <td>₦{Number(product.price_per_unit).toLocaleString()}</td>
                                                             <td>
                                                                 <button
                                                                     onClick ={() => this.clickProduct(product)}
