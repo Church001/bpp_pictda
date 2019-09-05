@@ -74,6 +74,7 @@ class Login extends React.Component{
                                         backgroundColor:"#ffffff"
                                     }}
                                     >
+                                    {/*  */}
                                     <div id="login" className="login loginpage offset-xl-4 offset-lg-3 offset-md-3 offset-0 col-12 col-md-6 col-xl-4">
                                         <img 
                                             src={logo} 
