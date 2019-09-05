@@ -171,7 +171,7 @@ class Users extends React.Component{
                                                             <td>{i+1}</td>
                                                             <td>{product.name}</td>
                                                             <td>{product.category}</td>
-                                                            <td>₦{product.price_per_unit}</td>
+                                                            <td>₦{Number(product.price_per_unit).toLocaleString()}</td>
                                                         </tr>
                                                     )
                                                 })

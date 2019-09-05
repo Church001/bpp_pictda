@@ -125,12 +125,23 @@ class GeneralLayout extends React.Component{
       }
     }
 
+    passer = data => {
+        console.log("PASSE DATA", data)
+    }
+
     render(){
       let  auth = {
           isAuthenticated: !_.isEmpty(User)
         }
         return (
-            <div className="wrapper" ref="themeWrapper" data-menu={this.state.menuColor} data-topbar={this.state.topbarColor} data-menutype={this.state.menuType} data-topbartype={this.state.topbarType}>
+            <div 
+                className="wrapper" 
+                ref="themeWrapper" 
+                data-menu={this.state.menuColor} 
+                data-topbar={this.state.topbarColor} 
+                data-menutype={this.state.menuType} 
+                data-topbartype={this.state.topbarType}
+            >
                 <Header 
                     {...this.props} 
                     navtype={navWidth} 
@@ -145,6 +156,7 @@ class GeneralLayout extends React.Component{
                     <Switch>
                         <ProtectedRoute
                             rest={this.state.allData}
+                            funct={this.passer}
                             auth={auth}
                             path="/dashboard"
                             exact

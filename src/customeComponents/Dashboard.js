@@ -6,7 +6,8 @@ import CountTo from 'react-count-to';
 import gql from 'graphql-tag';
 import {client} from ".."
 import _ from "lodash"
-import productIcon from "../assets/img/productIcon.png"
+import { Link } from 'react-router-dom';
+
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -126,7 +127,7 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        // console.log("STATE", this.state.products)
+        console.log("PROPS", this.props)
         return (
             <div>
             { 
@@ -146,6 +147,10 @@ class Dashboard extends React.Component{
                             <div className="content-body">    <div className="row">
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <Link
+                                        to="/products"
+                                        className="nav-link"
+                                    >
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-wrench icon-lg'></i>
@@ -154,10 +159,15 @@ class Dashboard extends React.Component{
                                                 <span>Building Material</span>
                                             </div>
                                         </div>
+                                    </Link>
 
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <Link
+                                        to="/products"
+                                        className="nav-link"
+                                    >
                                         <div className="tile-counter bg-success">
                                             <div className="wid-content">
                                                 <i className='i-pencil icon-lg'></i>
@@ -168,10 +178,15 @@ class Dashboard extends React.Component{
                                                 <span>Stationaries</span>
                                             </div>
                                         </div>
+                                    </Link>
 
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <Link
+                                        to="/products"
+                                        className="nav-link"
+                                    >
                                         <div className="tile-counter bg-danger">
                                             <div className="wid-content">
                                                 <i className='i-drawer icon-lg'></i>
@@ -180,10 +195,15 @@ class Dashboard extends React.Component{
                                                 <span>Furnitures</span>
                                             </div>
                                         </div>
+                                    </Link>
 
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <Link
+                                        to="/products"
+                                        className="nav-link"
+                                    >
                                         <div className="tile-counter bg-purple">
                                             <div className="wid-content">
                                                 <i className='i-screen-desktop icon-lg'></i>
@@ -192,10 +212,15 @@ class Dashboard extends React.Component{
                                                 <span>Electronics</span>
                                             </div>
                                         </div>
+                                    </Link>
 
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <Link
+                                        to="/users"
+                                        className="nav-link"
+                                    >
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
                                                 <i className='i-people icon-lg'></i>
@@ -205,6 +230,7 @@ class Dashboard extends React.Component{
                                                 <span>Users</span>
                                             </div>
                                         </div>
+                                    </Link>
 
                                     </div>
 
@@ -233,6 +259,10 @@ class Dashboard extends React.Component{
                                     </div>
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                                    <Link
+                                        to="/products"
+                                        className="nav-link"
+                                    >
                                         <div className="tile-counter bg-success">
                                             <div className="wid-content">
                                                 <i className='i-social-dropbox icon-lg'></i>
@@ -241,6 +271,7 @@ class Dashboard extends React.Component{
                                                 <span>Products</span>
                                             </div>
                                         </div>
+                                    </Link>
 
                                     </div>
 

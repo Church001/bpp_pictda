@@ -150,7 +150,7 @@ class Products extends React.Component{
         let result = []
         let word = ""
         word = word + e.target.value.toUpperCase()
-        let searchWord = word
+        // let searchWord = word
         data.map( one => {
             if(this.filterer(one, word) === true){
                 result.push(one)
@@ -194,7 +194,7 @@ class Products extends React.Component{
                             </h4>
                             <h4>Price:{"    "}
                                 <span>
-                                ₦{!_.isEmpty(this.state.clickedProduct.price_per_unit)?this.state.clickedProduct.price_per_unit:""}
+                                ₦{!_.isEmpty(this.state.clickedProduct.price_per_unit)?Number(this.state.clickedProduct.price_per_unit).toLocaleString():""}
                                 </span>
                                 {"    "}(per unit)
                             </h4>
@@ -438,7 +438,7 @@ class Products extends React.Component{
                                                             <td>{product.name}</td>
                                                             <td>{product.manufacturer}</td>
                                                             <td>{product.category}</td>
-                                                            <td>{product.price_per_unit}</td>
+                                                            <td>{Number(product.price_per_unit).toLocaleString()}</td>
                                                             <td>
                                                                 <button
                                                                     onClick ={() => this.clickProduct(product)}
