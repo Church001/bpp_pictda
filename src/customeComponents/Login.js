@@ -83,7 +83,7 @@ class Login extends React.Component{
                                                     height:"180px",
                                                     marginLeft:"25%"
                                                 }}
-                                            alt="bpp logo"
+                                            alt="bpp logo."
                                             />
                                         <form name="loginform" id="loginform">
                                             <p>
