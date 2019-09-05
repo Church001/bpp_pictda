@@ -1,18 +1,12 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Nav } from 'reactstrap';
-
 import { Navmenudropdown } from 'components';
 import { Navmenugroup } from 'components';
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar';
-//import useravatar from "assets/img/profile.jpg";
-import logofull from "assets/img/logo1.png";
 import logomini from "assets/img/logo1.png";
 import logofulldark from "assets/img/logo-full-dark.png";
 import logominidark from "assets/img/logo-mini-dark.png";
-
-
 
 var ps;
 var currentmenu = "notset";

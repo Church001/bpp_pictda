@@ -31,10 +31,6 @@ class Users extends React.Component{
             error: {}
         }
     }
-
-    componentWillMount(){
-        // console.log("COMPONENT WILL MOUNT", this.props)
-    }
     
     componentDidMount(){
         client.query({

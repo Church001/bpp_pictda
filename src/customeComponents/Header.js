@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Collapse, Navbar, Nav,
     Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
-    Container, InputGroup, InputGroupAddon, Input
+    Container
 } from 'reactstrap';
 import logo from "../assets/img/logo1.png"
 import dashboardRoutes from 'routes/general.jsx';

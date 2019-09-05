@@ -39,6 +39,11 @@ class Products extends React.Component{
                 loading: false
             })
         }
+        if(!_.isEmpty(this.props.dest)){
+            this.setState({
+                selection: this.props.dest
+            })
+        }
     }
 
     componentDidMount(){
@@ -93,7 +98,6 @@ class Products extends React.Component{
         let result = []
             if(filter === "all"){
                 result = [...this.state.products]
-                
             }
            else{ 
                data.map( single => {

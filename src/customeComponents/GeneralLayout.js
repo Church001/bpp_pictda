@@ -32,7 +32,8 @@ class GeneralLayout extends React.Component{
             topbarType: topbarType,
             allProducts: [],
             allUsers: [],
-            allData:{}
+            allData:{},
+            destinationSection:"all"
         };
         this.menuSettings = this.menuSettings.bind(this);
         this.topbarSettings = this.topbarSettings.bind(this);
@@ -116,8 +117,6 @@ class GeneralLayout extends React.Component{
         }
     }
 
-    componentWillUnmount(){
-    }
     componentDidUpdate(e) {
       if(e.history.action === "PUSH"){
         this.refs.mainPanel.scrollTop = 0;
@@ -126,7 +125,9 @@ class GeneralLayout extends React.Component{
     }
 
     passer = data => {
-        console.log("PASSE DATA", data)
+        this.setState({
+            destinationSection: data
+        })
     }
 
     render(){
@@ -164,6 +165,7 @@ class GeneralLayout extends React.Component{
                         />
                         <ProtectedRoute
                             rest={this.state.allData}
+                            dest={this.state.destinationSection}
                             auth={auth}
                             path="/products"
                             exact

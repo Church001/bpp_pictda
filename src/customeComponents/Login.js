@@ -3,9 +3,6 @@ import {
     Row, Col,
 } from 'reactstrap';
 import gql from 'graphql-tag';
-import {
-    
-} from 'components';
 import logo from "../assets/img/logo1.png"
 import {client} from ".." 
 import _ from "lodash"
@@ -86,6 +83,7 @@ class Login extends React.Component{
                                                     height:"180px",
                                                     marginLeft:"25%"
                                                 }}
+                                            alt="bpp logo"
                                             />
                                         <form name="loginform" id="loginform">
                                             <p>

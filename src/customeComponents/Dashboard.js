@@ -56,7 +56,7 @@ class Dashboard extends React.Component{
     filterFurniture = (data) => {
         let result = []
         data.map( one => {
-            if(one.category === "furnitures"){
+            if(one.category === "furniture"){
                 result.push(one)
             }
          })
@@ -127,7 +127,6 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        console.log("PROPS", this.props)
         return (
             <div>
             { 
@@ -148,8 +147,9 @@ class Dashboard extends React.Component{
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     <Link
-                                        to="/products"
+                                        onClick={()=>this.props.funct("building")}
                                         className="nav-link"
+                                        to="/products"
                                     >
                                         <div className="tile-counter bg-info">
                                             <div className="wid-content">
@@ -165,6 +165,7 @@ class Dashboard extends React.Component{
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     <Link
+                                        onClick={()=>this.props.funct("stationaries")}
                                         to="/products"
                                         className="nav-link"
                                     >
@@ -184,6 +185,7 @@ class Dashboard extends React.Component{
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     <Link
+                                        onClick={()=>this.props.funct("furniture")}
                                         to="/products"
                                         className="nav-link"
                                     >
@@ -201,6 +203,7 @@ class Dashboard extends React.Component{
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     <Link
+                                        onClick={()=>this.props.funct("electronics")}
                                         to="/products"
                                         className="nav-link"
                                     >
@@ -218,6 +221,7 @@ class Dashboard extends React.Component{
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     <Link
+                                        // onClick={()=>this.props.funct("building")}
                                         to="/users"
                                         className="nav-link"
                                     >
@@ -260,6 +264,7 @@ class Dashboard extends React.Component{
 
                                     <div className="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
                                     <Link
+                                        onClick={()=>this.props.funct("all")}
                                         to="/products"
                                         className="nav-link"
                                     >
