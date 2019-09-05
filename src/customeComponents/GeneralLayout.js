@@ -22,6 +22,11 @@ if(localStorage.__){
     User = jwt_decode(localStorage.__)
 }
 
+
+if(window.location.pathname === "/"){
+    window.location.replace("/dashboard")
+}    
+
 class GeneralLayout extends React.Component{
     constructor(props) {
         super(props);
@@ -53,10 +58,11 @@ class GeneralLayout extends React.Component{
     }
 
     componentWillMount(){
-            if(this.props.location.pathname === "/" && this.props.match.isExact === true){
-                this.props.history.push("/dashboard")
-            }    
+        if(this.props.match.pathname === "/" && this.props.match.isExact === true){
+            this.props.history.push("/dashboard")
+        }    
     }
+    
     componentDidMount(){
         if(!_.isEmpty(User)){
             client.query({

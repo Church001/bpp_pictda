@@ -168,13 +168,13 @@ class Sidebar extends React.Component{
             <div className="sidebar menubar" data-color="black">
 
                 <div className="logo">
-                    <Link to="/" className="logo-mini">
+                    <Link to="/dashboard" className="logo-mini">
                         <div className="logo-img">
                             {/* <img src={logomini} alt="react-logo" className="light-logo" /> */}
                             <img src={logominidark} alt="react-logo" className="dark-logo"/>
                         </div>
                     </Link>
-                    <Link to="/" className="logo-full">
+                    <Link to="/dashboard" className="logo-full">
                             {/* <img 
                                 src={logofull} 
                                 alt="react-logo" 
@@ -193,7 +193,7 @@ class Sidebar extends React.Component{
                                 marginRight:"25px"
                             }}
                             >
-                            <Link to="/">
+                            <Link to="/dashboard">
                                 {/* <img alt="" src={logomini} className="img-fluid avatar-image"/> */}
 
                                 <img 

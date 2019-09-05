@@ -33,13 +33,15 @@ if(localStorage.__){
         window.location.href = '/login';
     }
 }
-// else{
-//     window.location.href = '/login';
-// }
 
 export const client = new ApolloClient({
     uri: "https://bpp-mobile.herokuapp.com/graphql"
 });
+
+
+if(window.location.pathname === "/"){
+    window.location.replace("/dashboard")
+}    
 
 
 ReactDOM.render(
@@ -58,7 +60,6 @@ ReactDOM.render(
                 <Route 
                     path='/'
                     component={GeneralLayout}
-                    
                 />
             </Switch>
         </Router>
