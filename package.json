@@ -17,7 +17,7 @@
     "graphql": "^14.4.2",
     "history": "4.9.0",
     "html-to-draftjs": "1.4.0",
-    "jquery": "3.4.0",
+    "jquery": "3.5.0",
     "jvectormap": "2.0.4",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
