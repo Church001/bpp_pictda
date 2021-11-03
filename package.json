@@ -59,7 +59,7 @@
     "react-time-picker": "3.5.1",
     "reactstrap": "8.0.0",
     "typescript": "*",
-    "validator": "10.11.0"
+    "validator": "13.7.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
